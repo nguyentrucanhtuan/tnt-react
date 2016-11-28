@@ -88,9 +88,7 @@ module.exports = {
         },
 
     ],
-    noParse: [
-        /localforage\/dist\/localforage.js/
-    ]
+  
     //noParse: [new RegExp('node_modules/localforage/dist/localforage.js')]
   },
   alias: { 'localforage': 'localforage/dist/localforage.js'},
