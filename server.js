@@ -28,5 +28,5 @@ app.listen(port, function(err) {
     return;
   }
 
-  console.log('Listening at http://localhost:8080');
+  console.log('Listening at '+port);
 });
