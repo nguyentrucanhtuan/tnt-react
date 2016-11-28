@@ -88,7 +88,7 @@ module.exports = {
         }
     ]
   },
-  alias: { 'localForage': 'localforage/dist/localforage.js'},
+  alias: { 'localforage': 'localforage/dist/localforage.js'},
   postcss: function (webpack) {
       return [precss, autoprefixer];
   }
