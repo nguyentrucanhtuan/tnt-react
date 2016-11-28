@@ -80,10 +80,16 @@ module.exports = {
         {
           test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           loader: 'file-loader'
-        }
+        },
 
+        {
+            test: /localforage\/dist\/localforage.js/,
+            loader: 'exports?localforage',
+        }
     ]
   },
+
+  alias: { 'localforage': 'localforage/dist/localforage.js'}
   postcss: function (webpack) {
       return [precss, autoprefixer];
   }
