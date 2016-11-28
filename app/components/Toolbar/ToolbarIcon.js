@@ -19,15 +19,23 @@ export default class ToolbarIcon extends Component {
           number_background: {
               backgroundColor: 'red',
               position: 'absolute',
-              top: 5,
-              right: 0,
+              top: 7,
+              right: 4,
               height: 16,
               width: 16,
               borderRadius: 8,
               justifyContent: 'center',
               alignItems: 'center',
+              lineHeight: 0
           },
-          number_text: {color: 'white', fontSize: 11,position: 'absolute',top: 0,right: 4}
+          number_text: {
+            color: 'white',
+            fontSize: 11,
+            height: 16,
+            minWidth: 16,
+            lineHeight: '16px'
+          //  padding: "2px 5px"
+          }
 
       }
   }
@@ -89,8 +97,9 @@ export default class ToolbarIcon extends Component {
      icon  = null
     }else{
      icon  = (<span style={this.styles.number_background} className={css(amination.bounce)} ref={"totalNum"}>
-              <span style={this.styles.number_text}>{this.props.total}</span>
-          </span>)
+
+                <span className="notification" style={this.styles.number_text} >{this.props.total}</span>
+            </span>)
     }
 
 
