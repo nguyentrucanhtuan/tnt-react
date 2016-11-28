@@ -84,7 +84,7 @@ module.exports = {
 
         {
             test: /localforage\/dist\/localforage.js/,
-            loader: 'exports?localforage_js',
+            loader: 'exports?LocalForage',
         },
 
     ],
