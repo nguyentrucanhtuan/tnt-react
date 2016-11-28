@@ -5,7 +5,7 @@ import TimerMixin from 'react-timer-mixin';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {persistStore, autoRehydrate} from 'redux-persist'
 import thunk from 'redux-thunk';
-import localForage from 'localForage'
+import * as localForage from "localforage";
 
 import Constants from './Constants';
 import {store} from './store'
