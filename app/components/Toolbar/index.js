@@ -38,7 +38,7 @@ class Toolbar extends React.Component {
         </div>
         <div className="center">{title}</div>
         <div className="right">
-          <ToolbarIcon icon={"ion-ios-heart-outline"} />
+          <ToolbarIcon icon={"ion-ios-heart-outline"} total={4}/>
           <ToolbarIcon icon={"ion-ios-cart-outline"} total={2}/>
         </div>
       </OnsToolbar>

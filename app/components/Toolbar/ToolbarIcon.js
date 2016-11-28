@@ -20,20 +20,23 @@ export default class ToolbarIcon extends Component {
               backgroundColor: 'red',
               position: 'absolute',
               top: 7,
-              right: 4,
+              //right: 4,
               height: 16,
               width: 16,
               borderRadius: 8,
               justifyContent: 'center',
               alignItems: 'center',
-              lineHeight: 0
+              lineHeight: 0,
+              marginRight: 8
           },
           number_text: {
             color: 'white',
             fontSize: 11,
             height: 16,
             minWidth: 16,
-            lineHeight: '16px'
+            lineHeight: '16px',
+            right: 5,
+            top: 3
           //  padding: "2px 5px"
           }
 
@@ -96,15 +99,16 @@ export default class ToolbarIcon extends Component {
     if(this.props.total == 0){
      icon  = null
     }else{
-     icon  = (<span style={this.styles.number_background} className={css(amination.bounce)} ref={"totalNum"}>
+     //icon  = (<span style={this.styles.number_background} className={css(amination.bounce)} ref={"totalNum"}>
 
-                <span className="notification" style={this.styles.number_text} >{this.props.total}</span>
-            </span>)
+      //          <span className="notification" style={this.styles.number_text} >{this.props.total}</span>
+        //    </span>)
+        icon  = (<div className={css(amination.bounce) + ' notification reply-notification'} ref={"totalNum"} style={this.styles.number_text}>{this.props.total}</div>)
     }
 
 
     return (
-      <ToolbarButton>
+      <ToolbarButton >
         <Icon icon={this.props.icon} >{icon}</Icon>
 
       </ToolbarButton>
