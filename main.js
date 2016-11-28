@@ -16,7 +16,9 @@ import reducers from './app/reducers';
 
 import RootRouter from './app/RootRouter';
 import Navigator from './app/components/Navigator'
-
+require('onsenui/stylus/blue-basic-theme.styl');
+require('onsenui/css/onsenui.css');
+require('onsenui/css/onsen-css-components.css');
 
 class MStore extends Component {
     componentDidMount() { }

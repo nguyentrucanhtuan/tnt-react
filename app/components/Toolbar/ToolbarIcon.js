@@ -88,9 +88,9 @@ export default class ToolbarIcon extends Component {
     if(this.props.total == 0){
      icon  = null
     }else{
-     icon  = <span style={this.styles.number_background} className={css(amination.bounce)} ref={"totalNum"}>
-         <span style={this.styles.number_text}>{this.props.total}</span>
-     </span>
+     icon  = (<span style={this.styles.number_background} className={css(amination.bounce)} ref={"totalNum"}>
+              <span style={this.styles.number_text}>{this.props.total}</span>
+          </span>)
     }
 
 
