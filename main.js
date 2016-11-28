@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom'
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import { Provider, connect } from 'react-redux'
-import localForage from 'localForage'
+import localForage from 'localforage'
 import store, { history } from './app/store';
 import reducers from './app/reducers';
 
