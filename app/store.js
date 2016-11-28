@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import {persistStore, autoRehydrate} from 'redux-persist'
 import { browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
-import localForage from 'localforage'
+import localForage from 'localForage'
 import reducers from './reducers';
 
 const middleware = [thunk,routerMiddleware(browserHistory)];
