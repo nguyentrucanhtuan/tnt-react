@@ -62,7 +62,6 @@ class WooWorker extends Component {
           order: 'desc',
           orderby: 'count'
       }).then((json) => {
-          console.log(json);
           if (json.message === undefined)
               callback(json);
           else

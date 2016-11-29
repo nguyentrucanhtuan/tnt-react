@@ -21,7 +21,6 @@ export function requestCategories() {
 }
 
 export function receiveCategories(json) {
-  console.log(json);
     return {
         type: RECEIVE_CATEGORIES,
         categories: json,

@@ -3,12 +3,15 @@ import {connect} from 'react-redux';
 import Toolbar from './../../components/Toolbar'
 import Spinner from "./../../components/Spinner"
 import Constants from './../../Constants';
+import Category from './../../components/Category';
 import { getRoute } from './../../routes'
 import {fetchAllCategories, selectCategory} from './../../reducers/Category/actions'
 //import {clearProducts} from '../../reducers/Product/actions'
 import {
   Page,
-  Button
+  Button,
+  List,
+  ListItem
 } from 'react-onsenui';
 
 class Home extends Component {
@@ -53,17 +56,23 @@ class Home extends Component {
               this.props.Category.error ?
                   this.renderError(this.props.Category.error) :
                   this.renderCategories(subCategories)
+
           }
       </Page>
     );
   }
 
-  renderCategories(data) {
-    console.log(data);
+  renderCategories(categories) {
+    return (
+      <List
+        dataSource={categories}
+        renderRow={(category) => <Category key={category.id} navigator={this.props.navigator} {...category}></Category>}
+      />
+    );
   }
 
   renderError(error) {
-
+    console.log(error);
   }
 }
 

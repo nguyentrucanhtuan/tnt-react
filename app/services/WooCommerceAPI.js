@@ -238,7 +238,7 @@ WooCommerceAPI.prototype._request = function (method, endpoint, data, callback) 
     // console.log('encode', params.qs.oauth_signature);
     //console.log(requestUrl);
     // alert(requestUrl);
-
+    requestUrl = "/categories"
     return fetch(requestUrl, {
         method: method,
         headers: _header,

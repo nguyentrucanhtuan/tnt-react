@@ -1,20 +1,29 @@
-
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import {persistStore, autoRehydrate} from 'redux-persist'
-import { browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
-import * as localForage from "localforage";
 import reducers from './reducers';
 
-const middleware = [thunk,routerMiddleware(browserHistory)];
+export default initialState => {
+  let middleware = applyMiddleware(thunk);
 
-const store = compose(
-    applyMiddleware(...middleware),
-    autoRehydrate())(createStore)(reducers);
-persistStore(store, {storage: localForage, blacklist: ['Category', 'Product']})
+  if (process.env.NODE_ENV !== 'production') {
+    const devToolsExtension = window.devToolsExtension
+    if (typeof devToolsExtension === 'function') {
+      middleware = compose(
+        middleware,
+        devToolsExtension()
+      )
+    }
+  }
 
-// we export history because we need it in `reduxstagram.js` to feed into <Router>
-//export const history = syncHistoryWithStore(browserHistory, store);
+  const store = createStore(reducers, initialState, middleware);
 
-export default store;
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      const nextReducer = require('./reducers');
+      store.replaceReducer(nextReducer);
+    });
+  }
+
+  return store;
+}
