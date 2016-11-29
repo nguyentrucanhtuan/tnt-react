@@ -12,12 +12,12 @@ const Constants = {
         Address: 'http://mstore.io/api',
     },
     WooCommerce: {
-        url: 'http://mstore.io',
-        consumerKey: 'ck_b7594bc4391db4b56c635fe6da1072a53ca4535a',
-        consumerSecret: 'cs_980b9edb120e15bd2a8b668cacc734f7eca0ba40',
+        url: 'http://demo.nguyenlieuphache.com.vn',
+        consumerKey: 'ck_a776b8b6158048f44a27f9019a42ee80922aa186',
+        consumerSecret: 'cs_53dffca3950806f7c226fb1a823637596b45870e',
         wp_api: true,
         version: 'wc/v1',
-        timeout: 10, //request timeout
+        timeout: 20, //request timeout
         RootCategoryId: 0,
     },
     Auth0: {

@@ -92,7 +92,6 @@ export default class ToolbarIcon extends Component {
 
     })
 
-    console.log(amination);
 
     let icon = null;
 
