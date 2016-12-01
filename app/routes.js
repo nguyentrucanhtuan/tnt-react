@@ -5,7 +5,7 @@ export const initialRouteId = 'home'
 
 
 export const Routes = {
-  home: { component: Home, title: 'TNT Drink - Nguyên liệu pha chế', id: 'home' , key : 'home', hasBackButton: false, cart : true, wishList : true},
+  home: { component: Home, title: 'TNT Drink', id: 'home' , key : 'home', hasBackButton: false, cart : true, wishList : true},
   about: { component: About, title: 'About', id: 'about' , key : 'about' },
   category: { component: Category, title: 'Category', id: 'category' , key : 'category' },
   //longList: { component: LongList, title: 'Long list', id: 'longList' }
