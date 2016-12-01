@@ -5,6 +5,7 @@
 'use strict';
 
 import OAuth from "oauth-1.0a";
+import crypto from 'crypto';
 
 export default WooCommerceAPI;
 
@@ -128,7 +129,11 @@ WooCommerceAPI.prototype._getOAuth = function () {
             public: this.consumerKey,
             secret: this.consumerSecret
         },
-        signature_method: 'HMAC-SHA256'
+        signature_method: 'HMAC-SHA256',
+        hash_function: function(base_string, key) {
+            return crypto.createHmac('sha256', key).update(base_string)
+              .digest('base64');
+        }
     };
 
     if (-1 < ['v1', 'v2'].indexOf(this.version)) {
