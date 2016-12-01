@@ -9,7 +9,7 @@ const Api = new WooCommerceAPI({
     url: Constants.WooCommerce.url,
     consumerKey: Constants.WooCommerce.consumerKey,
     consumerSecret: Constants.WooCommerce.consumerSecret,
-    wp_api: Constants.WooCommerce.wp_api,
+    wpAPI: Constants.WooCommerce.wp_api,
     version: Constants.WooCommerce.version,
     timeout: Constants.WooCommerce.timeout
 });
@@ -62,6 +62,24 @@ class WooWorker extends Component {
           order: 'desc',
           orderby: 'count'
       }).then((json) => {
+          if (json.message === undefined)
+              callback(json);
+          else
+              error(JSON.stringify(json.message));
+      }).catch(error);
+  }
+
+  productById(callback, error = (e) => console.log(e), id) {
+      Api.get('products/' + id).then((json) => {
+          if (json.message === undefined)
+              callback(json);
+          else
+              error(JSON.stringify(json.message));
+      }).catch(error);
+  }
+
+  productsByCategoryId(callback, error = (e) => console.log(e), id, per_page, page) {
+      Api.get('products', {category: id, per_page: per_page, page: page}).then((json) => {
           if (json.message === undefined)
               callback(json);
           else

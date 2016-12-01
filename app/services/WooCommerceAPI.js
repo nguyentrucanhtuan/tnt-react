@@ -5,8 +5,7 @@
 'use strict';
 
 import OAuth from "oauth-1.0a";
-import crypto from 'crypto'
-import 'whatwg-fetch'
+
 export default WooCommerceAPI;
 
 /**
@@ -126,15 +125,10 @@ WooCommerceAPI.prototype._getUrl = function (endpoint) {
 WooCommerceAPI.prototype._getOAuth = function () {
     var data = {
         consumer: {
-            key: this.consumerKey,
+            public: this.consumerKey,
             secret: this.consumerSecret
         },
-        signature_method: 'HMAC-SHA256',
-        hash_function: (baseString, key) => {
-          return crypto.createHmac('sha256', key)
-            .update(baseString)
-            .digest('base64');
-        },
+        signature_method: 'HMAC-SHA256'
     };
 
     if (-1 < ['v1', 'v2'].indexOf(this.version)) {
@@ -222,10 +216,7 @@ WooCommerceAPI.prototype._request = function (method, endpoint, data, callback) 
     var _header;
     var _body;
     if (method == 'GET') {
-        _header = {
-          'Cache-Control': 'no-cache',
-          'Accept': 'application/json'
-        };
+        _header = {'Cache-Control': 'no-cache'};
     }
     else if (method == 'POST') {
         _header = {
@@ -236,26 +227,25 @@ WooCommerceAPI.prototype._request = function (method, endpoint, data, callback) 
     }
 
     // console.log('encode', params.qs.oauth_signature);
-    //console.log(requestUrl);
+    console.log(requestUrl);
     // alert(requestUrl);
-    requestUrl = "/categories"
+
     return fetch(requestUrl, {
         method: method,
         headers: _header,
         body: _body,
     })
-    .then(function(response) {
-      console.log(response);
-      return response.json()
-    })
-    .then(function(json){
-        if (typeof callback == 'function') {
-            callback();
-        }
-        return json;
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
-    });
+        .then((response) => {
+          response.json()
+          console.log(response)
+        })
+        .then((responseData) => {
+            if (typeof callback == 'function') {
+                callback();
+            }
+            console.log(responseData);
+            return responseData
+        }).catch((error) => console.warn(error));
 };
 
 /**

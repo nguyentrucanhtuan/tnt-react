@@ -16,6 +16,8 @@
     "aphrodite": "^1.1.0",
     "autoprefixer": "^6.5.3",
     "autoprefixer-loader": "^3.2.0",
+    "axios": "^0.15.3",
+    "oauth-1.0a": "1.0.1",
     "babel": "^6.5.2",
     "babel-cli": "^6.6.5",
     "babel-loader": "^6.2.4",

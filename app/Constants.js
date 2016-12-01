@@ -9,14 +9,14 @@ const ThemeColor3 = '#77a464';
 
 const Constants = {
     WordPress: {
-        Address: 'http://mstore.io/api',
+        Address: 'http://blogdochoi.net/api',
     },
     WooCommerce: {
-        url: 'http://demo.nguyenlieuphache.com.vn',
-        consumerKey: 'ck_a776b8b6158048f44a27f9019a42ee80922aa186',
-        consumerSecret: 'cs_53dffca3950806f7c226fb1a823637596b45870e',
+        url: 'http://blogdochoi.net',
+        consumerKey: 'ck_0f5b54f9669f3c4f02cd108e970b70b87b483ea6',
+        consumerSecret: 'cs_6384bf03e5670ae115db430db9155a99024919ca',
         wp_api: true,
-        version: 'wc/v1',
+        version: 'wc/v2',
         timeout: 20, //request timeout
         RootCategoryId: 0,
     },
