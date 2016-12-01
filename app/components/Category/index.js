@@ -13,7 +13,7 @@ class Category extends Component{
     return (
       <ListItem onClick={() => {
           this.props.selectCategory(this.props.id, undefined);
-          this.props.navigator.pushPage(Object.assign(getRoute('category'), {initCategoryId: this.props.id, title: this.props.name}))
+          this.props.navigator.pushPage(Object.assign({},getRoute('category'), {initCategoryId: this.props.id, title: this.props.name}))
         }} tappable>
         <div>
           <h2>{this.props.name}</h2>

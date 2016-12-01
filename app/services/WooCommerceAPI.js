@@ -6,6 +6,7 @@
 
 import OAuth from "oauth-1.0a";
 import crypto from 'crypto';
+import 'whatwg-fetch'
 
 export default WooCommerceAPI;
 
@@ -239,11 +240,9 @@ WooCommerceAPI.prototype._request = function (method, endpoint, data, callback) 
         method: method,
         headers: _header,
         body: _body,
+        //mode: 'no-cors'
     })
-        .then((response) => {
-          response.json()
-          console.log(response)
-        })
+        .then((response) => response.json())
         .then((responseData) => {
             if (typeof callback == 'function') {
                 callback();
