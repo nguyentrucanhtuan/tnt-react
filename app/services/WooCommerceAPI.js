@@ -136,6 +136,7 @@ WooCommerceAPI.prototype._getOAuth = function () {
               .digest('base64');
         }
     };
+    console.log(data);
 
     if (-1 < ['v1', 'v2'].indexOf(this.version)) {
         data.last_ampersand = false;
