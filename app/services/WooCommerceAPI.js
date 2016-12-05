@@ -127,7 +127,7 @@ WooCommerceAPI.prototype._getUrl = function (endpoint) {
 WooCommerceAPI.prototype._getOAuth = function () {
     var data = {
         consumer: {
-            public: this.consumerKey,
+            key: this.consumerKey,
             secret: this.consumerSecret
         },
         signature_method: 'HMAC-SHA256',
