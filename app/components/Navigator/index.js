@@ -39,16 +39,21 @@ class Navigator extends Component {
 
 
   onPostPop = (e, v) => {
-    console.log('onPostPop', e.navigator.page, e.enterPage, e.leavePage)
+
+    //console.log('onPostPop', e.navigator.page, e.enterPage, e.leavePage)
   }
   onPostPush = (e, v) => {
-    console.log('onPostPush', e.navigator.pages, e.enterPage.title, e.leavePage)
+
+    //console.log('onPostPush', e.navigator.pages, e.enterPage.title, e.leavePage)
   }
   onPrePush = (e, v) => {
-    console.log('onPrePush', e.currentPage)
+    console.log(e);
+    console.log(v);
+    //this.props.setRoute(e.routes.pushingRoute.id)
+    //console.log('onPrePush', e.currentPage)
   }
   onPrePop = (e, v) => {
-    console.log('onPrePop', e.currentPage)
+    //console.log('onPrePop', e.currentPage)
   }
 
   render() {
@@ -77,6 +82,8 @@ class Navigator extends Component {
             onPostPush={this.onPostPush}
             onPrePop={this.onPrePop}
             onPostPop={this.onPostPop}
+            animation='fade'
+            animationOptions={{duration: 0.2, timing: 'ease-in'}}
             />
         </SplitterContent>
       </Splitter>

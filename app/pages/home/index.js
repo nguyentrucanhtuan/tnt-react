@@ -40,6 +40,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
+      
       if (this.props.Category.categories.length == 0)
           this.props.fetchAllCategories();
   }
