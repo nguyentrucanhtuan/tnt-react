@@ -13,6 +13,7 @@
   "author": "Thanh Lam Huynh",
   "license": "ISC",
   "dependencies": {
+    "ainojs-react-image": "^1.4.1",
     "aphrodite": "^1.1.0",
     "autoprefixer": "^6.5.3",
     "autoprefixer-loader": "^3.2.0",

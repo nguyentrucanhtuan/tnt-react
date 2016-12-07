@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import Image from './../../components/Image'
-//import ImageResponsive, {Source} from 'react-image-responsive';
+//import Image from './../../components/Image'
+import Image as ImageComponent from 'ainojs-react-image';
 
 import {ListItem, Icon} from 'react-onsenui';
 import { getRoute } from './../../routes'
@@ -31,7 +31,8 @@ export default class ProductCard extends Component{
       const isListMode = this.props.viewMode === LIST_VIEW;
 
       const productImage = (
-        <img src={this.props.product.images[0].src} style={this.styles.image}/>
+        <Image src={this.props.product.images[0].src} lazy={true} ratio={114/200} style={this.styles.image}/>
+
     );
 
       return (
