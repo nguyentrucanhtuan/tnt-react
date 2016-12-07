@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Image from './../../components/Image'
-import ImageResponsive, {Source} from 'react-image-responsive';
+//import ImageResponsive, {Source} from 'react-image-responsive';
 
 import {ListItem, Icon} from 'react-onsenui';
 import { getRoute } from './../../routes'
