@@ -31,14 +31,7 @@ export default class ProductCard extends Component{
       const isListMode = this.props.viewMode === LIST_VIEW;
 
       const productImage = (
-        <Image
-          //on_sale={_product.on_sale}
-          //saleSize={this.state.currentMode == listMode ? 'big' : 'small'}
-          src={this.props.product.images[0].src} //TODO: no image case
-          style={this.styles.image}
-          resizeMode="cover"
-          aspectRatio={1}
-      />
+        <img src={this.props.product.images[0].src} style={this.styles.image}/>
     );
 
       return (
