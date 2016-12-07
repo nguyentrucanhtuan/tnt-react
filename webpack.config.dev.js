@@ -13,11 +13,11 @@ module.exports = {
     './main.js'
   ],
   output: {
-    path:path.join(__dirname, ''),
-    filename: 'index.js',
+    //path:path.join(__dirname, 'dist'),
+  //  filename: 'index.js',
     path: path.join(__dirname, 'public'),
-    //filename: 'bundle.js',
-    publicPath: '/'
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
   resolve: {
     root: [

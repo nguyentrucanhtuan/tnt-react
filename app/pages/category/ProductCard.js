@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Image from './../../components/Image'
+import ImageResponsive, {Source} from 'react-image-responsive';
 
 import {ListItem, Icon} from 'react-onsenui';
 import { getRoute } from './../../routes'
@@ -29,14 +30,15 @@ export default class ProductCard extends Component{
     render() {
       const isListMode = this.props.viewMode === LIST_VIEW;
 
-      const productImage = (<Image
-          //on_sale={_product.on_sale}
-          //saleSize={this.state.currentMode == listMode ? 'big' : 'small'}
-          src={this.props.product.images[0].src} //TODO: no image case
-          style={this.styles.image}
-          resizeMode="cover"
-          aspectRatio={1}
-      />);
+      const productImage = (
+        <ImageResponsive type="image" src="http://placehold.it/50x50" width="50%" height="200px">
+          <Source src="http://placehold.it/1600x300" maxWidth={1600}/>
+          <Source src="http://placehold.it/300x300"  maxWidth={300}/>
+          <Source src="http://placehold.it/500x300"  maxWidth={500}/>
+          <Source src="http://placehold.it/800x300"  maxWidth={800}/>
+          <Source src="http://placehold.it/1000x300" maxWidth={1000}/>
+      </ImageResponsive>
+    );
 
       return (
         <ListItem key={this.props.product.id} onClick={() => {
