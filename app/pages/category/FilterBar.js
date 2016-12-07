@@ -36,9 +36,9 @@ export default class FilterBar extends Component {
         iconWrapper: {
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 10,
+            padding: 5,
             borderLeftWidth: 1,
-            borderColor: Constants.Color.ViewBorder,
+            //borderColor: Constants.Color.ViewBorder,
             width: 50,
         },
         iconWithTextWrapper: {
@@ -81,15 +81,10 @@ export default class FilterBar extends Component {
 
     return (
       <BottomToolbar modifier="material">
-
-      <ons-row>
-         <ons-col width="30%"> Left </ons-col>
-         <ons-col width="50%"> Middle </ons-col>
-         <ons-col width="20%"> Right </ons-col>
-      </ons-row>
-        
-
-
+        <ons-row>
+           <ons-col width="85%"> {filterButton} </ons-col>
+           <ons-col width="15%"> {viewModeButton} </ons-col>
+        </ons-row>
       </BottomToolbar>
 
     );
@@ -97,7 +92,7 @@ export default class FilterBar extends Component {
 
   renderIcon(icon, callback) {
     return (
-      <ToolbarButton onClick={callback}>
+      <ToolbarButton onClick={callback} style={this.styles.iconWrapper}>
         <Icon icon="ion-ios-heart-outline" />
       </ToolbarButton>
     );
@@ -109,3 +104,13 @@ export default class FilterBar extends Component {
     </ToolbarButton>
   }
 }
+
+
+<FilterBar toggleProductViewMode={this.props.toggleProductViewMode}
+        selectCategory={this.props.selectCategory}
+        viewMode={this.props.Product.viewMode}
+        categories={this.props.Category.categories}
+        initCategoryId={this.props.initCategoryId}
+        initCategoryName={this.props.title}
+        clearProducts={this.props.clearProducts}
+/>

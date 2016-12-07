@@ -59,7 +59,7 @@ class Navigator extends Component {
   render() {
     const { openMenu, closeMenu, isOpen, currentRoute } = this.props;
     return (
-      <Splitter>
+      <Splitter style={{maxWidth: 720, margin: "0 auto"}}>
         <SplitterSide
           side="left"
           isOpen={isOpen}

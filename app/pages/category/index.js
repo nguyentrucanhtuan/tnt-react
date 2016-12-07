@@ -1,15 +1,19 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Toolbar from '../../components/Toolbar';
-
+import Spinner from "../../components/Spinner"
 import {selectCategory} from '../../reducers/Category/actions';
 import {toggleProductViewMode, fetchProductsByCategoryId} from '../../reducers/Product/actions';
 import {clearProducts} from '../../reducers/Product/actions';
-import FilterBar from "./FilterBar";
+
+
+//import FilterBar from "./FilterBar";
+import ProductCard from "./ProductCard";
 
 import {
   Page,
-  BottomToolbar
+  BottomToolbar,
+  List
 } from 'react-onsenui';
 
 class Category extends Component {
@@ -61,16 +65,30 @@ class Category extends Component {
       <Page  key="Category">
         <Toolbar navigator={this.props.navigator} cart={true} wishList={true}/>
 
-        <FilterBar toggleProductViewMode={this.props.toggleProductViewMode}
-                selectCategory={this.props.selectCategory}
-                viewMode={this.props.Product.viewMode}
-                categories={this.props.Category.categories}
-                initCategoryId={this.props.initCategoryId}
-                initCategoryName={this.props.title}
-                clearProducts={this.props.clearProducts}
-        />
+          {this.props.Product.products.length > 0 ?
+              this.renderProducts(this.props.Product.products) : <Spinner fullStretch/>
+          }
       </Page>
     );
+  }
+
+  renderProducts(data) {
+    //const dataSource = new ListView.DataSource({rowHasChanged: (row1, row2) => true});
+    const goToProduct = (productId) => Actions.product({productId: productId})
+    const renderRow = (product) => (
+        <ProductCard
+            key={product.id}
+            navigator={this.props.navigator}
+            onPress={goToProduct}
+            viewMode={this.props.Product.viewMode}
+            product={product}
+        />
+    );
+    return <List
+      ref="_listView"
+      dataSource={data}
+      renderRow={renderRow}
+    />
   }
 }
 
