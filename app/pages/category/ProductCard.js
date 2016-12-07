@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-//import Image from './../../components/Image'
-import {ImageComponent as Image} from 'ainojs-react-image';
+import Image from './../../components/Image'
+//import {ImageComponent as Image} from 'ainojs-react-image';
 
 import {ListItem, Icon} from 'react-onsenui';
 import { getRoute } from './../../routes'
@@ -27,11 +27,15 @@ export default class ProductCard extends Component{
         onPress: PropTypes.func.isRequired,
     };
 
+    onImageError(imgElement) {
+      console.log('error', imgElement)
+    }
+
     render() {
       const isListMode = this.props.viewMode === LIST_VIEW;
 
       const productImage = (
-        <Image src={this.props.product.images[0].src} lazy={true} ratio={114/200} style={this.styles.image}/>
+        <Image src={this.props.product.images[0].src} />
 
     );
 
