@@ -69,6 +69,15 @@ class WooWorker extends Component {
       }).catch(error);
   }
 
+  productById(callback, error = (e) => console.log(e), id) {
+      Api.get('products/' + id).then((json) => {
+          if (json.message === undefined)
+              callback(json);
+          else
+              error(JSON.stringify(json.message));
+      }).catch(error);
+  }
+
   productsByCategoryId(callback, error = (e) => console.log(e), id, per_page, page) {
       Api.get('products', {category: id, per_page: per_page, page: page}).then((json) => {
           if (json.message === undefined)
