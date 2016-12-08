@@ -22,6 +22,7 @@ export default class Image extends Component {
       backgroundRepeat: 'no-repeat'
     };
 
-    return <div {...props} style={{...defaults, ...style, ...important}} />
+    //return <div {...props} style={{...defaults, ...style, ...important}} />
+    return <img {...props} src={src} style={{...defaults, ...style, ...important}} />
   }
 }
