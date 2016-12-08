@@ -137,7 +137,7 @@ class Product extends Component {
   renderSwiper(_product) {
      return (
           <div className="product-swiper">
-              <Carousel centered   itemHeightindex={this.state.index} swipeable fullscreen autoScroll overscrollable>
+              <Carousel centered itemHeight={400} itemWidth={400}  index={this.state.index} swipeable fullscreen autoScroll overscrollable>
                 {_product.images.map((image, index) => (
                   <CarouselItem key={index}>
                     <Image src={image.src} width={"100%"} height={"auto"}/>
