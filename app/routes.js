@@ -1,6 +1,7 @@
 import Home from './pages/home'
 import About from './pages/about'
 import Category from './pages/category'
+import Product from './pages/product'
 export const initialRouteId = 'home'
 
 
@@ -8,6 +9,7 @@ export const Routes = {
   home: { component: Home, title: 'TNT Drink', id: 'home' , key : 'home', hasBackButton: false, cart : true, wishList : true},
   about: { component: About, title: 'About', id: 'about' , key : 'about' },
   category: { component: Category, title: 'Category', id: 'category' , key : 'category' },
+  product: { component: Product, title: 'Product', id: 'product' , key : 'product' },
   //longList: { component: LongList, title: 'Long list', id: 'longList' }
 }
 

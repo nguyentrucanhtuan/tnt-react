@@ -5,7 +5,7 @@ import Spinner from "../../components/Spinner"
 import {selectCategory} from '../../reducers/Category/actions';
 import {toggleProductViewMode, fetchProductsByCategoryId} from '../../reducers/Product/actions';
 import {clearProducts} from '../../reducers/Product/actions';
-
+import { getRoute } from './../../routes'
 
 //import FilterBar from "./FilterBar";
 import ProductCard from "./ProductCard";
@@ -74,7 +74,9 @@ class Category extends Component {
 
   renderProducts(data) {
     //const dataSource = new ListView.DataSource({rowHasChanged: (row1, row2) => true});
-    const goToProduct = (productId) => Actions.product({productId: productId})
+    const goToProduct = (productId) =>{
+       this.props.navigator.pushPage(Object.assign({},getRoute('product'), {productId: productId}))
+    }
     const renderRow = (product) => (
         <ProductCard
             key={product.id}
