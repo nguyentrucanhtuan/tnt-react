@@ -6,6 +6,7 @@ import Constants from './../../Constants'
 import Spinner from "./../../components/Spinner"
 import Rating from "./../../components/Rating"
 import Image from './../../components/Image'
+import ImageSwiper from './ImageSwiper'
 
 import {fetchProductById, clearProduct} from '../../reducers/Product/actions'
 import {addCartItem} from '../../reducers/Cart/actions'
@@ -27,12 +28,6 @@ class Product extends Component {
         isWaiting: true,
         currentPosition: 0,
         title : "Product",
-        items: [
-          '#F1948A',
-          '#D7BDE2',
-          '#85C1E9',
-          '#73C6B6',
-        ],
         index: 0
     }
 
@@ -62,10 +57,8 @@ class Product extends Component {
     };
 
     this.updatePrice = (props) => this.setState({price: props.price});
-    this.swiperHeight = Constants.Dimension.ScreenWidth() * 1.2;
-    this.inCartTotal = 0;
-  }
 
+  }
 
   static propTypes = {
       fetchProductById: PropTypes.func.isRequired,
@@ -82,8 +75,7 @@ class Product extends Component {
   }
 
   componentWillUnmount() {
-      //this.productChangePrice.remove();
-      EventEmitter.removeListener(Constants.EmitCode.ProductPriceChanged, this.updatePrice.bind(this));
+     EventEmitter.removeListener(Constants.EmitCode.ProductPriceChanged, this.updatePrice.bind(this));
   }
 
   componentDidMount() {
@@ -93,25 +85,17 @@ class Product extends Component {
   componentWillReceiveProps(nextProps) {
       const {product} = nextProps;
       if (product !== undefined) {
-          this.setState({price: product.price, title : product.title});
+          this.setState({price: product.price});
       }
   }
 
-  gotoComponent(component) {
-    this.props.navigator.pushPage({ comp: component });
-  }
   render() {
-    if (this.state.isWaiting)
-        return <Spinner fullStretch/>
+
 
     this._product = this.props.product;
 
-    this.isInWishList = this.props.wishLists.find((item)=> item.product.id == this._product.id) != undefined
-    const index = this.props.Cart.cartItems.findIndex((item)=> item.product.id == this._product.id);
-    this.inCartTotal = index == -1 ? 0 : this.props.Cart.cartItems[index].quantity;
-
     return (
-      <Page  key={`product_{this.props.productId}`}>
+      <Page key={this.props.productId}>
         <Toolbar
           navigator={this.props.navigator}
           title={this.state.title}
@@ -120,7 +104,8 @@ class Product extends Component {
           <div className="product-detail">
             <ons-row height="400px">
               <ons-col width="100%">
-                {this.renderSwiper(this._product)}
+                {this.state.isWaiting ? <Spinner fullStretch/> :
+                  <ImageSwiper product={this.props.product} />}
               </ons-col>
             </ons-row>
 
@@ -128,34 +113,7 @@ class Product extends Component {
       </Page>
     );
   }
-
-  setIndex(index) {
-    this.setState({index: index});
-  }
-
-
-  renderSwiper(_product) {
-     return (
-          <div className="product-swiper">
-              <Carousel centered itemHeight={400} itemWidth={400}  index={this.state.index} swipeable fullscreen autoScroll overscrollable>
-                {_product.images.map((image, index) => (
-                  <CarouselItem key={index}>
-                    <Image src={image.src} width={"100%"} height={"auto"}/>
-                  </CarouselItem>
-                ))}
-              </Carousel>
-              <div style={this.styles.swipe_control}>
-                {_product.images.map((image, index) => (
-                  <span key={index} style={{cursor: 'pointer'}} onClick={this.setIndex.bind(this, index)}>
-                    {this.state.index === index ? '\u25CF' : '\u25CB'}
-                  </span>
-                ))}
-              </div>
-          </div>
-      );
-    }
 }
-
 
 
 const mapStateToProps = (state) => {
