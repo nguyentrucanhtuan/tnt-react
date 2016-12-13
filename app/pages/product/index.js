@@ -144,27 +144,44 @@ class Product extends Component {
             fontWeight: "bold",
             margin: 5,
             marginRight: 0,
+            textAlign: 'center',
+            display: 'inline-block'
         },
         sale_price: {
-            textDecorationLine: 'line-through',
+            textDecoration: 'line-through',
             color: Constants.Color.TextLight,
             fontWeight: "normal",
+            textAlign: 'center',
+            display: 'inline-block'
         },
         sale_off: {
             color: Constants.Color.TextLight,
             fontWeight: "normal",
+            display: 'inline-block'
         }
     }
 
     return (
       <div style={this.styles.card}>
         <h3 style={styles.name}>{_product.name}</h3>
-        <div style={{justifyContent: 'center', alignItems: 'center'}}>
+        <div style={{justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
           <div style={{flexDirection: 'row'}}>
-            <span style={styles.price}>{Constants.Formatter.currency(_product.price) }</span>
-            <span style={[styles.price, styles.sale_price]}>
+            <div style={styles.price}>{Constants.Formatter.currency(_product.price) }</div>
+            <div style={{...styles.price, ...styles.sale_price}}>
                 {_product.on_sale ? Constants.Formatter.currency(_product.regular_price) : ''}
-            </span>
+            </div>
+            {!_product.on_sale ? <div/> :
+                <div style={{...styles.price, ...styles.sale_off}}>
+                    {'(' + ((1 - Number(_product.price) / Number(_product.regular_price)) * 100).toFixed(0) + '% off)' }
+                </div>
+            }
+          </div>
+          <div style={this.styles.container_row}>
+            <div style={{marginLeft: 10} }/>
+            <Rating rating={Number(_product.average_rating)} size={25}/>
+            <div style={{color: Constants.Color.ViewBorder, fontSize: 18, marginLeft: 5,}}>
+                  {'(' + _product.rating_count + ')'}
+            </div>
           </div>
         </div>
       </div>
