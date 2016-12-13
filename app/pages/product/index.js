@@ -8,6 +8,7 @@ import Rating from "./../../components/Rating"
 import Image from './../../components/Image'
 import ImageSwiper from './ImageSwiper'
 
+import { setSwipeable } from '../../actions/swipeable'
 import {fetchProductById, clearProduct} from '../../reducers/Product/actions'
 import {addCartItem} from '../../reducers/Cart/actions'
 import {addWishListItem, removeWishListItem} from '../../reducers/WishList/actions'
@@ -23,6 +24,7 @@ import {
 class Product extends Component {
   constructor(props) {
     super(props);
+    //this.props.setSwipeable(false);
     this.state = {
         currentVariation: undefined,       //current variation that match form input attributes
         isWaiting: true,
@@ -140,6 +142,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(fetchProductById(productId, callback));
         },
         clearProduct: () => dispatch(clearProduct()),
+        setSwipeable: swipeable => dispatch(setSwipeable(swipeable))
     }
 }
 

@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { setRoute } from '../../actions/route'
+import { setSwipeable } from '../../actions/swipeable'
 import { openMenu, closeMenu } from '../../actions/menu'
 import {
   Navigator as OnsNavigator,
@@ -23,6 +24,7 @@ class Navigator extends Component {
   constructor (props){
     super(props);
     this.navigator = null;
+    this.props.setSwipeable(false);
   }
 
   componentWillMount(){
@@ -32,6 +34,7 @@ class Navigator extends Component {
   renderPage = (route, navigator) => {
     this.navigator = navigator;
     //this.props.setRoute(route.id)
+    //this.props.setSwipeable(route.swipeable)
     return (
       <route.component navigator={navigator} {...route} />
     );
@@ -57,7 +60,8 @@ class Navigator extends Component {
   }
 
   render() {
-    const { openMenu, closeMenu, isOpen, currentRoute } = this.props;
+    const { openMenu, closeMenu, isOpen, currentRoute, isSwipeable} = this.props;
+    console.log(currentRoute);
     return (
       <Splitter style={{maxWidth: 720, margin: "0 auto"}}>
         <SplitterSide
@@ -67,7 +71,7 @@ class Navigator extends Component {
           onOpen={openMenu}
           width={240}
           collapse={true}
-          isSwipeable={true}>
+          isSwipeable={isSwipeable}>
           <Menu
             navigator={this.navigator}
             onMenuItemClick={closeMenu}
@@ -94,7 +98,8 @@ class Navigator extends Component {
 const mapStateToProps = state => {
   return {
     isOpen: state.isMenuOpen,
-    currentRoute: state.currentRoute
+    currentRoute: state.currentRoute,
+    isSwipeable: state.isSwipeable
   }
 }
 
@@ -102,7 +107,8 @@ const mapDispatchToProps = dispatch => {
   return {
     openMenu: () => dispatch(openMenu()),
     closeMenu: () => dispatch(closeMenu()),
-    setRoute: id => dispatch(setRoute(id))
+    setRoute: id => dispatch(setRoute(id)),
+    setSwipeable: swipeable => dispatch(setSwipeable(swipeable))
   }
 }
 

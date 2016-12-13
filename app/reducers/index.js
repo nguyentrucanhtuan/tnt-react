@@ -5,6 +5,7 @@ import Cart from './Cart';
 import WishList from './WishList';
 import currentRoute from './Route';
 import isMenuOpen from './Menu'
+import isSwipeable from './Swipeable'
 
 // ... other reducers
 
@@ -17,5 +18,6 @@ export default combineReducers({
     //Customer,
     // ... other reducers
     currentRoute,
-    isMenuOpen
+    isMenuOpen,
+    isSwipeable
 });

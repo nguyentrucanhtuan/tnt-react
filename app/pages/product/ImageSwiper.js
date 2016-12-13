@@ -17,10 +17,11 @@ export default class ImageSwiper extends Component {
       slidesToShow: 1,
       slidesToScroll: 1
     };
+    console.log(this.props.product)
     return (
       <Slider {...settings}>
       {this.props.product.images.map((image, index) =>
-          <img key={index} src={image.src}/>,this)}
+          <img key={index} src={image.src} style={{height:'auto'}}/>,this)}
       </Slider>
     );
   }
