@@ -16,7 +16,8 @@ export default class ImageSwiper extends Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      arrows: false
     };
     console.log(this.props.product)
     return (

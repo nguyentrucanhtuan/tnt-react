@@ -103,19 +103,77 @@ class Product extends Component {
           title={this.state.title}
           cart={this.props.cart}
           wishList={this.props.wishList}/>
-          <div className="product-detail">
-            <ons-row height="400px">
-              <ons-col width="100%">
-                {this.state.isWaiting ? <Spinner fullStretch/> :
-                  <ImageSwiper product={this.props.product} />}
-              </ons-col>
-            </ons-row>
 
-          </div>
+            {this.state.isWaiting ? <Spinner fullStretch/> :
+              this.renderProduct(this._product)}
+
       </Page>
     );
   }
+
+  renderProduct(product){
+    return (
+      <div className="product-detail">
+        <ons-row height={300}>
+          <ons-col width="100%">
+              <ImageSwiper product={this.props.product} />
+          </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col width="100%">
+              {this.renderTopInfo(product)}
+            </ons-col>
+        </ons-row>
+      </div>
+
+    );
+  }
+
+  renderTopInfo(_product) {
+    const styles = {
+        name: {
+            color: Constants.Color.TextDark,
+            fontSize: 26,
+            margin: 5,
+            marginBottom: 0,
+            textAlign: 'center'
+        },
+        price: {
+            color: Constants.Color.ProductPrice,
+            fontSize: 18,
+            fontWeight: "bold",
+            margin: 5,
+            marginRight: 0,
+        },
+        sale_price: {
+            textDecorationLine: 'line-through',
+            color: Constants.Color.TextLight,
+            fontWeight: "normal",
+        },
+        sale_off: {
+            color: Constants.Color.TextLight,
+            fontWeight: "normal",
+        }
+    }
+
+    return (
+      <div style={this.styles.card}>
+        <h3 style={styles.name}>{_product.name}</h3>
+        <div style={{justifyContent: 'center', alignItems: 'center'}}>
+          <div style={{flexDirection: 'row'}}>
+            <span style={styles.price}>{Constants.Formatter.currency(_product.price) }</span>
+            <span style={[styles.price, styles.sale_price]}>
+                {_product.on_sale ? Constants.Formatter.currency(_product.regular_price) : ''}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+
+  }
 }
+
+
 
 
 const mapStateToProps = (state) => {
