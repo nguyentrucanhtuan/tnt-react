@@ -29,7 +29,7 @@ export default class Rating extends Component {
     }
 
     return (
-        <div style={[{flexDirection: 'row'}, this.props.style]}>
+        <div style={{...{flexDirection: 'row'}, ...this.props.style}}>
             {stars}
         </div>
     );

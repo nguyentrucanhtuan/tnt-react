@@ -87,6 +87,14 @@ class WooWorker extends Component {
       }).catch(error);
   }
 
+  reviewByProductId(id, callback) {
+      Api.get('products/' + id + '/reviews').then((responseData) => {
+          if (responseData.message === undefined)
+              callback(responseData);
+          else
+              console.log(JSON.stringify(responseData.message));
+      }).catch((error) => console.log(error));
+  }
 
 }
 

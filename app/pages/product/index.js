@@ -1,12 +1,16 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import TimerMixin from 'react-timer-mixin';
+import renderHTML from 'react-render-html';
 import Toolbar from '../../components/Toolbar';
 import Constants from './../../Constants'
 import Spinner from "./../../components/Spinner"
 import Rating from "./../../components/Rating"
 import Image from './../../components/Image'
 import ImageSwiper from './ImageSwiper'
+
+import ReviewTab from "./ReviewTab";
+import VariationsForm from './VariationsForm'
 
 import { setSwipeable } from '../../actions/swipeable'
 import {fetchProductById, clearProduct} from '../../reducers/Product/actions'
@@ -41,7 +45,10 @@ class Product extends Component {
         card: {
             backgroundColor: 'white',
             marginBottom: 8,
-            padding: Constants.Dimension.ScreenWidth(0.05),
+            paddingLeft: Constants.Dimension.ScreenWidth(0.05),
+            paddingRight: Constants.Dimension.ScreenWidth(0.05),
+            paddingBottom: 10,
+            paddingTop: 10,
         },
         label: {
             color: Constants.Color.TextDark,
@@ -122,6 +129,9 @@ class Product extends Component {
         <ons-row>
             <ons-col width="100%">
               {this.renderTopInfo(product)}
+              {this.renderVariation(product)}
+              {this.renderDescription(product)}
+              {this.renderReviews(this._product)}
             </ons-col>
         </ons-row>
       </div>
@@ -178,15 +188,90 @@ class Product extends Component {
           </div>
           <div style={this.styles.container_row}>
             <div style={{marginLeft: 10} }/>
-            <Rating rating={Number(_product.average_rating)} size={25}/>
-            <div style={{color: Constants.Color.ViewBorder, fontSize: 18, marginLeft: 5,}}>
+            <Rating rating={Number(_product.average_rating)} size={25} style={{display:'inline-block'}}/>
+            <p style={{color: Constants.Color.ViewBorder, fontSize: 15, marginLeft: 5, display: 'inline-block'}}>
                   {'(' + _product.rating_count + ')'}
-            </div>
+            </p>
           </div>
         </div>
       </div>
     );
 
+  }
+
+  renderVariation(_product) {
+    return (
+      <div style={this.styles.card}>
+        <label style={this.styles.label}>Product Variations</label>
+        <VariationsForm
+              ref={'form'}
+              attributes={_product.attributes}
+              variations={_product.variations}
+              product={this}
+          />
+      </div>
+    );
+  }
+
+  renderDescription(_product) {
+    const styles = {
+
+        text: {
+            color: Constants.Color.TextDark,
+            fontSize: 14,
+        },
+        attribute_container: {
+            flexDirection: 'row',
+            borderWidth: 1,
+            borderColor: Constants.Color.ViewBorder,
+        },
+        attribute_left: {
+            flex: 3,
+            borderRightWidth: 1,
+            borderColor: Constants.Color.ViewBorder,
+            backgroundColor: '#F8F8F8',
+        },
+        attribute_right: {
+            flex: 7,
+        },
+        attribute_name: {
+            color: Constants.Color.TextDark,
+            fontSize: 14,
+            fontWeight: 'bold',
+            margin: 10
+        },
+        attribute_options: {
+            fontSize: 14,
+            margin: 10,
+        },
+    }
+
+    return (
+        <div style={this.styles.card}>
+            <label style={{...this.styles.label, ...{marginBottom: -10,}}}>
+                {"Additional Information"}
+            </label>
+            {_product.description == '' ?
+                <p style={styles.text}>
+                    {'No Product Description'}
+                </p> :
+                <div style={{margin: 10}}>
+                   {renderHTML(_product.description)}
+                </div>
+            }
+        </div>
+    );
+  }
+
+  renderReviews(_product) {
+      return (
+          <div style={this.styles.card}>
+              <label style={this.styles.label}>
+                  {'Product Reviews' + " (" + _product.rating_count + ")"}
+              </label>
+              <ReviewTab product={_product}/>
+          </div >
+      );
   }
 }
 
