@@ -37,6 +37,9 @@ class Category extends Component {
     initCategoryId: PropTypes.number.isRequired, //categoryId
     title: PropTypes.string.isRequired,
   }
+  componentWillMount(){
+    this.props.clearProducts();
+  }
 
   componentDidMount() {
       this.props.fetchProductsByCategoryId(this.props.Category.selectedCategoryId, this.limitPerPage, this.pageNumber++);
@@ -46,7 +49,10 @@ class Category extends Component {
     console.log(" recieve new props");
      const {Category, Product} = nextProps;
      if (this.currentCategoryId !== Category.selectedCategoryId) {
+       this.currentCategoryId = Category.selectedCategoryId;
+       this.pageNumber = 1;
 
+       this.props.fetchProductsByCategoryId(Category.selectedCategoryId, this.limitPerPage, this.pageNumber++);
      }
 
      if (this.currentViewMode !== Product.viewMode) {
