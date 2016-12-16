@@ -291,18 +291,22 @@ class Product extends Component {
     return (
       <SpeedDial position='bottom right'>
         <Fab>
-          <Icon icon='md-share' />
+          <Icon icon='md-plus' />
         </Fab>
-        <SpeedDialItem onClick={()=>{
-              ons.notification.confirm(`Do you want to share on TWitter"?`);
-          }}>
-          <Icon icon='md-twitter' />
-        </SpeedDialItem>
         <SpeedDialItem onClick={opAddToCart}>
-          <Icon icon='md-facebook' />
+          <Icon icon='md-shopping-cart-plus' />
         </SpeedDialItem>
         <SpeedDialItem >
-          <Icon icon='md-google-plus' />
+          <Icon icon='md-favorite' />
+        </SpeedDialItem>
+        <SpeedDialItem >
+          <Icon icon='md-phone' />
+        </SpeedDialItem>
+        <SpeedDialItem >
+          <Icon icon='md-star' />
+        </SpeedDialItem>
+        <SpeedDialItem >
+          <Icon icon='md-facebook' />
         </SpeedDialItem>
       </SpeedDial>
     );
