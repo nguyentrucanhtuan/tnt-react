@@ -251,7 +251,7 @@ class Product extends Component {
     }
 
     return (
-        <div style={{...this.styles.card,...{borderBottom:'none'}}}>
+        <div style={this.styles.card}>
             <label style={{...this.styles.label, ...{marginBottom: -10,}}}>
                 {"Additional Information"}
             </label>
@@ -269,7 +269,7 @@ class Product extends Component {
 
   renderReviews(_product) {
       return (
-          <div style={this.styles.card}>
+          <div style={{...this.styles.card,...{borderBottom:'none'}}}>
               <label style={this.styles.label}>
                   {'Product Reviews' + " (" + _product.rating_count + ")"}
               </label>
