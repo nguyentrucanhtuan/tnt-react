@@ -18,11 +18,13 @@ import {addCartItem} from '../../reducers/Cart/actions'
 import {addWishListItem, removeWishListItem} from '../../reducers/WishList/actions'
 import EventEmitter from './../../utils/AppEventEmitter'
 
-
+import ons from 'onsenui';
 import {
   Page,
-  Carousel,
-  CarouselItem
+  Fab,
+  Icon,
+  SpeedDial,
+  SpeedDialItem
 } from 'react-onsenui';
 
 class Product extends Component {
@@ -49,6 +51,7 @@ class Product extends Component {
             paddingRight: Constants.Dimension.ScreenWidth(0.05),
             paddingBottom: 10,
             paddingTop: 10,
+            borderBottom: '1px solid #ccc'
         },
         label: {
             color: Constants.Color.TextDark,
@@ -134,6 +137,7 @@ class Product extends Component {
               {this.renderReviews(this._product)}
             </ons-col>
         </ons-row>
+        {this.renderButtonGroup()}
       </div>
 
     );
@@ -247,7 +251,7 @@ class Product extends Component {
     }
 
     return (
-        <div style={this.styles.card}>
+        <div style={{...this.styles.card,...{borderBottom:'none'}}}>
             <label style={{...this.styles.label, ...{marginBottom: -10,}}}>
                 {"Additional Information"}
             </label>
@@ -272,6 +276,29 @@ class Product extends Component {
               <ReviewTab product={_product}/>
           </div >
       );
+  }
+
+  renderButtonGroup() {
+    return (
+      <SpeedDial position='bottom right'>
+        <Fab>
+          <Icon icon='md-share' />
+        </Fab>
+        <SpeedDialItem onClick={this.share.bind(this, 'Twitter')}>
+          <Icon icon='md-twitter' />
+        </SpeedDialItem>
+        <SpeedDialItem onClick={this.share.bind(this, 'Facebook')}>
+          <Icon icon='md-facebook' />
+        </SpeedDialItem>
+        <SpeedDialItem onClick={this.share.bind(this, 'Google+')}>
+          <Icon icon='md-google-plus' />
+        </SpeedDialItem>
+      </SpeedDial>
+    );
+  }
+
+  share(name) {
+    ons.notification.confirm(`Do you want to share on "${name}"?`);
   }
 }
 
