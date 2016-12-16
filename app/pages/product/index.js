@@ -107,7 +107,7 @@ class Product extends Component {
     this._product = this.props.product;
 
     return (
-      <Page key={this.props.productId}>
+      <Page key={this.props.productId} renderFixed={this.renderButtonGroup}>
         <Toolbar
           navigator={this.props.navigator}
           title={this.state.title}
@@ -137,7 +137,7 @@ class Product extends Component {
               {this.renderReviews(this._product)}
             </ons-col>
         </ons-row>
-        {this.renderButtonGroup()}
+
       </div>
 
     );
@@ -278,28 +278,37 @@ class Product extends Component {
       );
   }
 
+  share(name) {
+    ons.notification.confirm(`Do you want to share on "${name}"?`);
+  }
+
+
   renderButtonGroup() {
+    var self = this;
+    const opAddToCart = () => {
+      ons.notification.confirm(`Do you want to add this product to Cart"?`);
+    }
     return (
       <SpeedDial position='bottom right'>
         <Fab>
           <Icon icon='md-share' />
         </Fab>
-        <SpeedDialItem onClick={this.share.bind(this, 'Twitter')}>
+        <SpeedDialItem onClick={()=>{
+              ons.notification.confirm(`Do you want to share on TWitter"?`);
+          }}>
           <Icon icon='md-twitter' />
         </SpeedDialItem>
-        <SpeedDialItem onClick={this.share.bind(this, 'Facebook')}>
+        <SpeedDialItem onClick={opAddToCart}>
           <Icon icon='md-facebook' />
         </SpeedDialItem>
-        <SpeedDialItem onClick={this.share.bind(this, 'Google+')}>
+        <SpeedDialItem >
           <Icon icon='md-google-plus' />
         </SpeedDialItem>
       </SpeedDial>
     );
   }
 
-  share(name) {
-    ons.notification.confirm(`Do you want to share on "${name}"?`);
-  }
+
 }
 
 
