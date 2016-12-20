@@ -56,7 +56,6 @@ export default class Spinner extends Component {
             zIndex: 100,
         }
     }
-    console.log(this.props.fullStretch);
 
     return (
         <div style={this.props.fullStretch ? styles.container_full_stretch : styles.container}>

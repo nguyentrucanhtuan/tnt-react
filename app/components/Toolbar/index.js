@@ -38,16 +38,18 @@ class Toolbar extends React.Component {
         </div>
         <div className="center">{title}</div>
         <div className="right">
-          <ToolbarIcon icon={"ion-ios-heart-outline"} total={4}/>
-          <ToolbarIcon icon={"ion-ios-cart-outline"} total={2}/>
+          <ToolbarIcon icon={this.props.WishList.total == 0 ? "ion-ios-heart-outline" : "ion-ios-heart"} total={this.props.WishList.total}/>
+          <ToolbarIcon icon={this.props.Cart.total == 0 ? "ion-ios-cart-outline" : "ion-ios-cart"} total={this.props.Cart.total}/>
         </div>
       </OnsToolbar>
     );
   }
 }
 
-const mapStateToProps = _state => {
+const mapStateToProps = (state) => {
   return {
+    Cart: state.Cart,
+    WishList: state.WishList,
   }
 }
 

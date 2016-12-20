@@ -1,13 +1,28 @@
 
 import React, {Component, PropTypes} from 'react';
+import ReactDOM from 'react-dom'
 import { bounce, shake , bounceInDown} from 'react-animations';
 import { StyleSheet, css } from 'aphrodite';
 import {Icon,ToolbarButton} from 'react-onsenui';
+import TimerMixin from 'react-timer-mixin';
 
 export default class ToolbarIcon extends Component {
   constructor(props) {
       super(props);
-      this.state = {}
+      this.animation = StyleSheet.create({
+        bounce: {
+          animationName: bounceInDown,
+          animationDuration: '2s'
+        },
+        shake: {
+          animationName: shake,
+          animationDuration: '2s'
+        },
+
+      })
+      this.state = {
+        animationClass: css(this.animation.bounce)
+      }
       this.styles = {
           itemWrapper: {
               //justifyContent: 'center',
@@ -61,19 +76,14 @@ export default class ToolbarIcon extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {total} = nextProps;
-    const amination = StyleSheet.create({
-      bounce: {
-        animationName: bounceInDown,
-        animationDuration: '2s'
-      },
-      shake: {
-        animationName: shake,
-        animationDuration: '2s'
-      },
 
-    })
     if (total !== this.total) {
-      ReactDOM.findDOMNode(this.refs.totalNum).style = Object.assign({}, ReactDOM.findDOMNode(this.refs.totalNum).style, amination.shake);
+      //this.refs.totalNum.style = Object.assign({}, this.refs.totalNum.style, amination.shake)
+      //ReactDOM.findDOMNode(this.refs.totalNum).style = Object.assign({}, ReactDOM.findDOMNode(this.refs.totalNum).style, amination.shake);
+      this.setState({
+        animationClass: css(this.animation.shake)
+      })
+      TimerMixin.setTimeout(() => {this.setState({animationClass: ''})}, 500,);
     }
     this.total = total;
   }
@@ -102,7 +112,7 @@ export default class ToolbarIcon extends Component {
 
       //          <span className="notification" style={this.styles.number_text} >{this.props.total}</span>
         //    </span>)
-        icon  = (<div className={css(amination.bounce) + ' notification reply-notification'} ref={"totalNum"} style={this.styles.number_text}>{this.props.total}</div>)
+        icon  = (<div className={this.state.animationClass + ' notification reply-notification'} ref='totalNum' style={this.styles.number_text}>{this.props.total}</div>)
     }
 
 

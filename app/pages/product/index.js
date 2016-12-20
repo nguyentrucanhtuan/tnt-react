@@ -69,7 +69,7 @@ class Product extends Component {
     };
 
     this.updatePrice = (props) => this.setState({price: props.price});
-
+    this.inCartTotal = 0;
   }
 
   static propTypes = {
@@ -105,9 +105,11 @@ class Product extends Component {
 
 
     this._product = this.props.product;
-
+    this.isInWishList = this.props.wishLists.find((item)=> item.product.id == this._product.id) != undefined
+    const index = this.props.Cart.cartItems.findIndex((item)=> item.product.id == this._product.id);
+    this.inCartTotal = index == -1 ? 0 : this.props.Cart.cartItems[index].quantity;
     return (
-      <Page key={this.props.productId} renderFixed={this.renderButtonGroup}>
+      <Page key={this.props.productId} renderFixed={this.renderButtonGroup.bind(this)}>
         <Toolbar
           navigator={this.props.navigator}
           title={this.state.title}
@@ -284,20 +286,49 @@ class Product extends Component {
 
 
   renderButtonGroup() {
-    var self = this;
-    const opAddToCart = () => {
-      ons.notification.confirm(`Do you want to add this product to Cart"?`);
+    let opAddToCart = (go = false) => {
+      if (this.inCartTotal < 10){
+        let _product = this.props.product;
+        let _variation = this.state.currentVariation;
+
+        if(_product.variations.length > 0){
+          this.refs.form.onPress();
+          if(! variation) return
+        }
+        this.props.addCartItem(_product, _variation)
+        if(go) console.log("go to cart")
+      }
+      else{
+        ons.notification.confirm(`Do you want to add this product to Cart"?`);
+      }
+    }
+
+    const opAddToWishlist = () => {
+      let _product = this.props.product;
+      let _variation = this.state.currentVariation;
+
+      if (_product.variations.length > 0){
+        this.refs.form.onPress();
+        if(!_variation) return;
+      }
+
+      if (this.isInWishList){
+        this.props.removeWishListItem(_product, _variation);
+      }
+      else{
+        this.props.addWishListItem(_product, _variation);
+      }
     }
     return (
       <SpeedDial position='bottom right'>
         <Fab>
           <Icon icon='md-plus' />
         </Fab>
-        <SpeedDialItem onClick={opAddToCart}>
+        <SpeedDialItem onClick={() => opAddToCart()}>
           <Icon icon='md-shopping-cart-plus' />
         </SpeedDialItem>
-        <SpeedDialItem >
-          <Icon icon='md-favorite' />
+        <SpeedDialItem onClick={()=> opAddToWishlist()}>
+          <Icon icon={this.isInWishList ? Constants.Icon.Wishlist : Constants.Icon.WishlistEmpty} style={{color: this.isInWishList ? '#f38612' : ''}}/>
         </SpeedDialItem>
         <SpeedDialItem >
           <Icon icon='md-phone' />
