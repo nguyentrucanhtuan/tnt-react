@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import TimerMixin from 'react-timer-mixin';
 import renderHTML from 'react-render-html';
+import Notifications, {notify} from 'react-notify-toast';
+
 import Toolbar from '../../components/Toolbar';
 import Constants from './../../Constants'
 import Spinner from "./../../components/Spinner"
@@ -139,7 +141,7 @@ class Product extends Component {
               {this.renderReviews(this._product)}
             </ons-col>
         </ons-row>
-
+        <Notifications />
       </div>
 
     );
@@ -293,9 +295,10 @@ class Product extends Component {
 
         if(_product.variations.length > 0){
           this.refs.form.onPress();
-          if(! variation) return
+          if(! _variation) return
         }
         this.props.addCartItem(_product, _variation)
+        notify.show('Mua thành công!','success',3000)
         if(go) console.log("go to cart")
       }
       else{
@@ -307,6 +310,7 @@ class Product extends Component {
       let _product = this.props.product;
       let _variation = this.state.currentVariation;
 
+      console.log(_product.variations)
       if (_product.variations.length > 0){
         this.refs.form.onPress();
         if(!_variation) return;
@@ -317,6 +321,7 @@ class Product extends Component {
       }
       else{
         this.props.addWishListItem(_product, _variation);
+        notify.show('Sản phẩm yêu thích!','success',2000)
       }
     }
     return (
