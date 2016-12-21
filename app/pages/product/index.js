@@ -298,7 +298,7 @@ class Product extends Component {
           if(! _variation) return
         }
         this.props.addCartItem(_product, _variation)
-        notify.show('Thành công!','success',30000)
+        notify.show('Thành công!','success',3000)
         if(go) console.log("go to cart")
       }
       else{
@@ -321,7 +321,7 @@ class Product extends Component {
       }
       else{
         this.props.addWishListItem(_product, _variation);
-        notify.show('Yêu thích!','success',2000)
+        notify.show('Yêu thích!','success',3000)
       }
     }
     return (
