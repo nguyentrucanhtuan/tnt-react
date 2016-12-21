@@ -117,9 +117,8 @@ export default class ToolbarIcon extends Component {
 
 
     return (
-      <ToolbarButton >
+      <ToolbarButton onClick={this.props.onPress}>
         <Icon icon={this.props.icon} >{icon}</Icon>
-
       </ToolbarButton>
     );
   }

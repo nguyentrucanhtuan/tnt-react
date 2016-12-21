@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { openMenu } from '../../actions/menu'
 import { setRoute } from '../../actions/route'
+import { getRoute } from './../../routes'
 import {
   Toolbar as OnsToolbar,
   ToolbarButton,
@@ -19,10 +20,19 @@ class Toolbar extends React.Component {
     const pageToPop = navigator.pages[navigator.pages.length - 2]
     navigator.popPage().then(() => setRoute(pageToPop.props.id))
   }
+
+
   render() {
     const { openMenu, navigator } = this.props;
     const title = navigator.pages[navigator.pages.length - 1].props.title;
 
+    const openWishList = () =>  {
+      this.props.navigator.pushPage(getRoute('wishlist'))
+    }
+
+    const openShopCart = () => {
+      //this.props.navigator.pushPage(getRoute('wishlist'))
+    }
 
     return (
       <OnsToolbar inline>
@@ -38,8 +48,8 @@ class Toolbar extends React.Component {
         </div>
         <div className="center">{title}</div>
         <div className="right">
-          <ToolbarIcon icon={this.props.WishList.total == 0 ? "ion-ios-heart-outline" : "ion-ios-heart"} total={this.props.WishList.total}/>
-          <ToolbarIcon icon={this.props.Cart.total == 0 ? "ion-ios-cart-outline" : "ion-ios-cart"} total={this.props.Cart.total}/>
+          <ToolbarIcon onPress={openWishList} icon={this.props.WishList.total == 0 ? "ion-ios-heart-outline" : "ion-ios-heart"} total={this.props.WishList.total}/>
+          <ToolbarIcon onPress={openShopCart} icon={this.props.Cart.total == 0 ? "ion-ios-cart-outline" : "ion-ios-cart"} total={this.props.Cart.total}/>
         </div>
       </OnsToolbar>
     );
