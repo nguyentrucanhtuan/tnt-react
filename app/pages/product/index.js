@@ -324,6 +324,18 @@ class Product extends Component {
         notify.show('Yêu thích!','success',3000)
       }
     }
+
+    const opPhoneCall = (phoneNumber,promt = false) => {
+      //let phoneNumber = "0976502505";
+      let url;
+      if (!ons.platform.isAndroid()){
+        url = prompt ? 'telprompt:' : 'tel:';
+      }else{
+        url = 'tel:';
+      }
+      url += phoneNumber;
+      window.open(url)
+    }
     return (
       <SpeedDial position='bottom right'>
         <Fab>
@@ -335,14 +347,8 @@ class Product extends Component {
         <SpeedDialItem onClick={()=> opAddToWishlist()}>
           <Icon icon={this.isInWishList ? Constants.Icon.Wishlist : Constants.Icon.WishlistEmpty} style={{color: this.isInWishList ? '#f38612' : ''}}/>
         </SpeedDialItem>
-        <SpeedDialItem >
+        <SpeedDialItem onClick={()=> opPhoneCall('0976502505')}>
           <Icon icon='md-phone' />
-        </SpeedDialItem>
-        <SpeedDialItem >
-          <Icon icon='md-star' />
-        </SpeedDialItem>
-        <SpeedDialItem >
-          <Icon icon='md-facebook' />
         </SpeedDialItem>
       </SpeedDial>
     );
