@@ -67,29 +67,35 @@ class WishList extends React.Component {
 
   render() {
     return (
-      <Page key="WishList">
+      <Page key="WishList" renderFixed={this.renderButtonGroup.bind(this)}>
         <Toolbar navigator={this.props.navigator} />
         <div style={this.styles.container}>
           {this.props.WishList.wishListItems.length == 0 ?
               this.renderError("No WishList Item") :
               this.renderWishListItems(this.props.WishList.wishListItems)}
-          <Button
-              onPress={this.opAddAllToCart.bind(this)}
-              autoMargin={false}
-              borderLess>
-             {"Move All To Cart"}
-          </Button>
-          <Button
-              onPress={() => this.props.emptyWishList()}
-              autoMargin={false}
-              style={{marginBottom: Constants.Dimension.ScreenWidth(0.05)}}
-              color='black'
-              overlayColor='white'>
-              {"Empty Wish List"}
-          </Button>
+
         </div>
       </Page>
     );
+  }
+
+  renderButtonGroup(){
+    return (<div style={{position: 'fixed', bottom: 0}}>
+      <Button
+          onPress={this.opAddAllToCart.bind(this)}
+          autoMargin={true}
+          borderLess>
+         {"Move All To Cart"}
+      </Button>
+      <Button
+          onPress={() => this.props.emptyWishList()}
+          autoMargin={true}
+          style={{marginBottom: Constants.Dimension.ScreenWidth(0.02)}}
+          color='black'
+          overlayColor='white'>
+          {"Empty Wish List"}
+      </Button>
+    </div>)
   }
 
 

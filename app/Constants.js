@@ -41,10 +41,12 @@ const Constants = {
     },
     Dimension: {
         ScreenWidth(percent = 1) {
-            return screen.width * percent;
+           let screenWidth = screen.width
+           if(screenWidth > 720) screenWidth = 720
+           return screenWidth * percent;
         },
         ScreenHeight(percent = 1) {
-            return screen.height * percent;
+          return screen.height * percent;
         },
     },
     Image: {
