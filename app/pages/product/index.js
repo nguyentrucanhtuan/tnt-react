@@ -310,7 +310,7 @@ class Product extends Component {
       let _product = this.props.product;
       let _variation = this.state.currentVariation;
 
-      console.log(_product.variations)
+      //console.log(_product.variations)
       if (_product.variations.length > 0){
         this.refs.form.onPress();
         if(!_variation) return;

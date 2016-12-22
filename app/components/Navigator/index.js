@@ -50,8 +50,8 @@ class Navigator extends Component {
     //console.log('onPostPush', e.navigator.pages, e.enterPage.title, e.leavePage)
   }
   onPrePush = (e, v) => {
-    console.log(e);
-    console.log(v);
+    //console.log(e);
+    //console.log(v);
     //this.props.setRoute(e.routes.pushingRoute.id)
     //console.log('onPrePush', e.currentPage)
   }
@@ -61,7 +61,7 @@ class Navigator extends Component {
 
   render() {
     const { openMenu, closeMenu, isOpen, currentRoute, isSwipeable} = this.props;
-    console.log(currentRoute);
+
     return (
       <Splitter style={{maxWidth: 720, margin: "0 auto"}}>
         <SplitterSide

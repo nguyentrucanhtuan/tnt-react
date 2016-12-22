@@ -3,12 +3,14 @@ import {connect} from 'react-redux';
 import Toolbar from '../../components/Toolbar';
 
 import Constants from './../../Constants';
+import WishListItemRow from './WishListItemRow';
 import {addCartItem} from '../../reducers/Cart/actions'
 import {emptyWishList} from '../../reducers/WishList/actions'
 
 
 import {
-  Page
+  Page,
+  List
 } from 'react-onsenui';
 
 class WishList extends React.Component {
@@ -54,10 +56,34 @@ class WishList extends React.Component {
       <Page key="WishList">
         <Toolbar navigator={this.props.navigator} />
         <div style={this.styles.container}>
-
+          {this.props.WishList.wishListItems.length == 0 ?
+              this.renderError("No WishList Item") :
+              this.renderWishListItems(this.props.WishList.wishListItems)}
         </div>
       </Page>
     );
+  }
+
+
+  renderError(error) {
+      return <div style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
+      }}>
+          <p>{error}</p>
+      </div>
+  }
+
+  renderWishListItems(data) {
+    //  const dataSource = new ListView.DataSource({rowHasChanged: (row1, row2) => true});
+
+      const renderRow = (wishListItem) => <WishListItemRow key={wishListItem.product.id} wishListItem={wishListItem}/>
+
+      return <List
+          dataSource={data}
+          renderRow={renderRow}
+      />
   }
 }
 const mapStateToProps = (state) => {

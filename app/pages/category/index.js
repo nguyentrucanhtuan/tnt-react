@@ -46,7 +46,6 @@ class Category extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(" recieve new props");
      const {Category, Product} = nextProps;
      if (this.currentCategoryId !== Category.selectedCategoryId) {
        this.currentCategoryId = Category.selectedCategoryId;

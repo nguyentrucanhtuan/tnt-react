@@ -136,7 +136,6 @@ WooCommerceAPI.prototype._getOAuth = function () {
               .digest('base64');
         }
     };
-    console.log(data);
 
     if (-1 < ['v1', 'v2'].indexOf(this.version)) {
         data.last_ampersand = false;
@@ -233,9 +232,7 @@ WooCommerceAPI.prototype._request = function (method, endpoint, data, callback) 
         _body = JSON.stringify(data);
     }
 
-    // console.log('encode', params.qs.oauth_signature);
-    console.log(requestUrl);
-    // alert(requestUrl);
+
 
     return fetch(requestUrl, {
         method: method,
@@ -248,7 +245,6 @@ WooCommerceAPI.prototype._request = function (method, endpoint, data, callback) 
             if (typeof callback == 'function') {
                 callback();
             }
-            console.log(responseData);
             return responseData
         }).catch((error) => console.warn(error));
 };

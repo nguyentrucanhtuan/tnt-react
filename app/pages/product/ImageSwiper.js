@@ -19,7 +19,6 @@ export default class ImageSwiper extends Component {
       slidesToScroll: 1,
       arrows: false
     };
-    console.log(this.props.product)
     return (
       <Slider {...settings}>
       {this.props.product.images.map((image, index) =>

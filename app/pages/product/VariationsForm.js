@@ -70,14 +70,12 @@ export default class VariationsForm extends Component {
   }
 
   onChange(value) {
-    console.log('on change')
     this.refs.form.validate();
     this.setState({value: value})
     let variation = this.getVariationFromAtts(value);
     this.props.product.setState({
         currentVariation: variation,
     });
-    console.log(variation);
     if (variation != undefined) {
         EventEmitter.emit(Constants.EmitCode.ProductPriceChanged, {price: variation.price});
     }
@@ -96,7 +94,7 @@ export default class VariationsForm extends Component {
         for (let attribute of variation.attributes) { //loop through variation's attributes
             let selectedOption = value[attribute.id + ""];
             if (selectedOption == undefined) break;
-            console.log(slugify(selectedOption) + ' __ ' + slugify(attribute.option))
+            //console.log(slugify(selectedOption) + ' __ ' + slugify(attribute.option))
             if (!(isMatch = slugify(selectedOption) == slugify(attribute.option))) break;
         }
         if (isMatch) return variation;
