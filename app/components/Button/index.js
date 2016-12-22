@@ -39,6 +39,28 @@ export default class Button extends Component {
   }
 
   render() {
+    let styles = {
+        button: {
+            borderColor: Constants.Color.ButtonBorder,
+            borderWidth: this.props.borderLess ? 0 : 1,
+            backgroundColor: this.props.overlayColor,
+            alignSelf: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 5,
+            marginBottom: 5,
+            marginLeft: this.props.autoMargin ? Constants.Dimension.ScreenWidth(0.05) : 0,
+            marginRight: this.props.autoMargin ? Constants.Dimension.ScreenWidth(0.05) : 0,
+            height: 45,
+            width: this.props.autoWidth ? Constants.Dimension.ScreenWidth(0.9) : undefined,
+        },
+        text: {
+            alignSelf: "center",
+            fontSize: 14,
+            fontWeight: 'bold',
+            color: this.props.color,
+        }
+    }
     return (
       <OnsButton style={{...styles.button, ...this.props.style}} onClick={this.props.onPress}>
         {this.props.isLoading ?

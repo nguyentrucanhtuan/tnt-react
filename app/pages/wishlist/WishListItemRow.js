@@ -8,7 +8,7 @@ import Image from './../../components/Image'
 import Button from './../../components/Button';
 import {addWishListItem, removeWishListItem} from '../../reducers/WishList/actions'
 import {addCartItem} from '../../reducers/Cart/actions'
-import {ListItem, Icon} from 'react-onsenui';
+import {ListItem, Icon, Button as OnsButton} from 'react-onsenui';
 
 class WishListItemRow extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class WishListItemRow extends Component {
             margin: 0,
         },
         product_price: {
-            padding: 10,
+            padding: 0,
             paddingTop: 0,
             paddingBottom: 0,
             flex: 1,
@@ -47,7 +47,7 @@ class WishListItemRow extends Component {
             justifyContent: 'center',
         },
         buttons_wrapper: {
-            padding: 10,
+            padding: 0,
             paddingTop: 5,
             paddingBottom: 5,
             flex: 1,
@@ -55,7 +55,7 @@ class WishListItemRow extends Component {
         },
         itemWrapper: {
             justifyContent: 'center',
-            padding: 0,
+            //padding: 0,
             marginLeft: 10,
         },
     }
@@ -86,7 +86,7 @@ class WishListItemRow extends Component {
               {productImage}
           </ons-col>
           <ons-col width="70%" height={120}>
-            <div className="product" style={{padding: 5}}>
+            <div className="product" style={{padding: "0px 0px 0px 10px"}}>
                 <h3 className="product-name" style={this.styles.product_name}>{_product.name}</h3>
                 {this.renderPriceGroup(_variation == undefined ? _product : _variation)}
                 {productVariations}
@@ -114,9 +114,10 @@ class WishListItemRow extends Component {
         },
         price: {
             color: Constants.Color.ProductPrice,
-            fontSize: 14,
+            fontSize: 18,
             fontWeight: "bold",
             marginRight: 5,
+            marginTop: 15
         },
         sale_price: {
             textDecorationLine: 'line-through',
@@ -133,14 +134,14 @@ class WishListItemRow extends Component {
     return (
       <div style={this.styles.product_price}>
         <div style={styles.row}>
-          <h3 style={[styles.price]}>
+          <h3 style={styles.price}>
               {Constants.Formatter.currency(_product.price) }
           </h3>
           <div style={{...styles.price, ...styles.sale_price}}>
               {_product.on_sale ? Constants.Formatter.currency(_product.regular_price) : ''}
           </div>
           {_product.on_sale ?
-              <p style={[styles.price, styles.sale_off]}>
+              <p style={{...styles.price, ...styles.sale_off}}>
                   {'(-' + ((1 - Number(_product.price) / Number(_product.regular_price)) * 100).toFixed(0) + '%)' }
               </p> : <div/>
           }
@@ -167,7 +168,7 @@ class WishListItemRow extends Component {
     }
 
     const onPressDelete = () => {
-      
+
     }
 
     const {product, variation} =  this.props.wishListItem;
@@ -176,16 +177,27 @@ class WishListItemRow extends Component {
             <Button autoMargin={false}
                     onPress={onPressBuyNow}
                     style={{
-                        width: Constants.Dimension.ScreenWidth(0.2),
+                        width: 'auto',
                         height: 30,
                         marginTop: 0,
-                        borderWidth: 0
+                        borderWidth: 0,
+                        marginBottom: 0,
                     }}>{"BUY NOW"}</Button>
 
             {this.renderIconButton(Constants.Icon.Delete, onPressDelete)}
 
         </div>
     </div>);
+  }
+
+
+  renderIconButton(icon, callback) {
+      return (
+          <OnsButton onClick={callback} style={this.styles.itemWrapper}>
+              <Icon icon={icon} size={25}
+                    style={{color:Constants.Color.ViewBorder}} fixed-width="true"/>
+          </OnsButton>
+      );
   }
 }
 
