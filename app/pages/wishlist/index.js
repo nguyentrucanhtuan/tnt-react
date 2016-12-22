@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Toolbar from '../../components/Toolbar';
-
+import Button from "./../../components/Button";
 import Constants from './../../Constants';
 import WishListItemRow from './WishListItemRow';
 import {addCartItem} from '../../reducers/Cart/actions'
@@ -42,6 +42,20 @@ class WishList extends React.Component {
         }
     };
 
+    this.opAddAllToCart = () => {
+        if (this.props.WishList.wishListItems.length === 0) alert("Empty Add To Cart");
+        else {
+            this.props.WishList.wishListItems.forEach(wishlistItem => {
+                const index = this.props.Cart.cartItems.findIndex((item)=> item.product.id == wishlistItem.product.id);
+                const inCartTotal = index == -1 ? 0 : this.props.Cart.cartItems[index].quantity;
+                if (inCartTotal < 100)
+                    this.props.addCartItem(wishlistItem.product, wishlistItem.variation);
+                else
+                    console.log('limit')
+            });
+            //Actions.cart({type: 'replace'});
+        }
+    }
 
   }
 
@@ -59,6 +73,20 @@ class WishList extends React.Component {
           {this.props.WishList.wishListItems.length == 0 ?
               this.renderError("No WishList Item") :
               this.renderWishListItems(this.props.WishList.wishListItems)}
+          <Button
+              onPress={this.opAddAllToCart.bind(this)}
+              autoMargin={false}
+              borderLess>
+             {"Move All To Cart"}
+          </Button>
+          <Button
+              onPress={() => this.props.emptyWishList()}
+              autoMargin={false}
+              style={{marginBottom: Constants.Dimension.ScreenWidth(0.05)}}
+              color='black'
+              overlayColor='white'>
+              {"Empty Wish List"}
+          </Button>
         </div>
       </Page>
     );
