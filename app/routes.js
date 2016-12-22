@@ -3,6 +3,7 @@ import About from './pages/about'
 import Category from './pages/category'
 import Product from './pages/product'
 import Wishlist from './pages/wishlist'
+import Cart from './pages/cart'
 export const initialRouteId = 'home'
 
 
@@ -12,7 +13,7 @@ export const Routes = {
   category: { component: Category, title: 'Category', id: 'category' , key : 'category' , swipeable : true},
   product: { component: Product, title: 'Product', id: 'product' , key : 'product', swipeable : false},
   wishlist: { component: Wishlist, title: 'Wishlist', id: 'wishlist' , key : 'wishlist', swipeable : false},
-
+  cart: { component: Cart, title: 'Cart', id: 'cart' , key : 'cart', swipeable : false},
   //longList: { component: LongList, title: 'Long list', id: 'longList' }
 }
 

@@ -80,7 +80,7 @@ class WishList extends React.Component {
   }
 
   renderButtonGroup(){
-    return (<div style={{position: 'fixed', bottom: 0}}>
+    return (<div style={{position: 'fixed', bottom: 0, backgroundColor: 'white'}}>
       <Button
           onPress={this.opAddAllToCart.bind(this)}
           autoMargin={true}
