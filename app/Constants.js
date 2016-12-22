@@ -41,10 +41,10 @@ const Constants = {
     },
     Dimension: {
         ScreenWidth(percent = 1) {
-            return window.innerWidth * percent;
+            return screen.width * percent;
         },
         ScreenHeight(percent = 1) {
-            return window.innerHeight * percent;
+            return screen.height * percent;
         },
     },
     Image: {

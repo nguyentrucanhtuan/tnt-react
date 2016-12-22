@@ -9,7 +9,7 @@ import Button from './../../components/Button';
 import {addWishListItem, removeWishListItem} from '../../reducers/WishList/actions'
 import {addCartItem} from '../../reducers/Cart/actions'
 import {ListItem, Icon, Button as OnsButton} from 'react-onsenui';
-
+import ons from 'onsenui';
 class WishListItemRow extends Component {
   constructor(props) {
     super(props);
@@ -70,6 +70,9 @@ class WishListItemRow extends Component {
   render() {
     const _product = this.props.wishListItem.product;
     const _variation = this.props.wishListItem.variation;
+
+    const index = this.props.Cart.cartItems.findIndex((item)=> item.product.id == _product.id);
+    this.inCartTotal = index == -1 ? 0 : this.props.Cart.cartItems[index].quantity;
 
     const productImage = (
       <Image src={_product.images[0].src} width={"100%"} height={'auto'}/>
@@ -161,14 +164,25 @@ class WishListItemRow extends Component {
     }
 
     const onPressBuyNow = () => {
-        if (this.inCartTotal < 5)
+        if (this.inCartTotal < 100)
             this.props.addCartItem(product, variation)
         else
             alert("Product Limit Waring");
     }
 
     const onPressDelete = () => {
-
+      self = this;
+      ons.notification.confirm({
+         message: 'Are you sure?',
+         callback: function(answer) {
+           // Do something here.
+           console.log(answer)
+           if(answer){
+             console.log(self.styles)
+             self.props.removeWishListItem(product, variation)
+           }
+         }
+       });
     }
 
     const {product, variation} =  this.props.wishListItem;
