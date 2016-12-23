@@ -56,6 +56,9 @@ class CartItemRow extends Component {
               justifyContent: 'center',
               padding: 0,
               marginLeft: 10,
+              lineHeight: '25px',
+              minHeight: 25,
+              minWidth: 26
           },
       }
   }
@@ -87,7 +90,7 @@ class CartItemRow extends Component {
               {productImage}
           </ons-col>
           <ons-col width="70%" height={120}>
-            <div className="product" style={{padding: "0px 0px 0px 0px"}}>
+            <div className="product" style={{padding: "0px 0px 0px 0px",flex: 1}}>
                 <h3 className="product-name" style={this.styles.product_name}>{_product.name}</h3>
                 {this.renderPriceGroup(_variation == undefined ? _product : _variation)}
                 {productVariations}
@@ -161,6 +164,7 @@ class CartItemRow extends Component {
         },
         row_between: {
             flexDirection: 'row',
+            display: 'flex',
             justifyContent: 'space-between',
         },
         buttonLeft: {
@@ -203,7 +207,15 @@ class CartItemRow extends Component {
     const {product, variation, quantity} =  this.props.cartItem;
     const hitBottomLimit = quantity == 1;
     const hitTopLimit = quantity == 10;
+    const pnPressWishList = ()=> {
+        if (this.isInWishList)
+            this.props.removeWishListItem(product, variation)
+        else
+            this.props.addWishListItem(product, variation)
+    }
+    const onPressDelete = () => {
 
+    }
     return (
           <div style={this.styles.buttons_wrapper}>
               <div style={styles.row_between}>
@@ -223,6 +235,10 @@ class CartItemRow extends Component {
                     </OnsButton>
 
                 </div>
+                <div style={styles.row}>
+                {this.renderIconButton(this.isInWishList ? Constants.Icon.Wishlist : Constants.Icon.WishlistEmpty, pnPressWishList)}
+                {this.renderIconButton(Constants.Icon.Delete, onPressDelete)}
+                </div>
               </div>
           </div>
     );
@@ -231,7 +247,7 @@ class CartItemRow extends Component {
 
   renderIconButton(icon, callback) {
       return (
-          <OnsButton onClick={callback} style={this.styles.itemWrapper}>
+          <OnsButton onClick={callback} modifier='outline' style={this.styles.itemWrapper}>
               <Icon icon={icon} size={25}
                     style={{color:Constants.Color.ViewBorder}} fixed-width="true"/>
           </OnsButton>
