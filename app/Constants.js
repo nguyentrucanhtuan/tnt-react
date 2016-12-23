@@ -124,7 +124,7 @@ const Constants = {
         TabDeActiveText: 'black',
         BuyNowButton: '#FF9522',
 
-        ViewBorder: '#bcbebb',
+        ViewBorder: '#ddd',
 
         //Spinner
         Spinner: ThemeColor1,
