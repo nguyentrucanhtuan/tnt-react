@@ -20,6 +20,7 @@ export default class Button extends Component {
       color: PropTypes.string,
       overlayColor: PropTypes.string,
       iconName: PropTypes.string,
+      modifier: PropTypes.string
   };
 
   static defaultProps = {
@@ -29,7 +30,8 @@ export default class Button extends Component {
       autoMargin: true,
       color: Constants.Color.ButtonText,
       overlayColor: Constants.Color.ButtonBackground,
-      iconName: ''
+      iconName: '',
+      modifier: 'cta'
       // size: 'large', // 'normal',
   };
 
@@ -49,28 +51,31 @@ export default class Button extends Component {
             justifyContent: 'center',
             marginTop: 5,
             marginBottom: 5,
-            marginLeft: this.props.autoMargin ? Constants.Dimension.ScreenWidth(0.05) : 0,
-            marginRight: this.props.autoMargin ? Constants.Dimension.ScreenWidth(0.05) : 0,
+            marginLeft: this.props.autoMargin ? Constants.Dimension.ScreenWidth(0.03) : 0,
+            marginRight: this.props.autoMargin ? Constants.Dimension.ScreenWidth(0.03) : 0,
             height: 45,
-            width: this.props.autoWidth ? Constants.Dimension.ScreenWidth(0.9) : undefined,
+            width: this.props.autoWidth ? Constants.Dimension.ScreenWidth(0.92) : undefined,
         },
         text: {
             alignSelf: "center",
             fontSize: 14,
             fontWeight: 'bold',
             color: this.props.color,
+            textAlign: 'center'
         }
     }
+
+
     return (
-      <OnsButton style={{...styles.button, ...this.props.style}} onClick={this.props.onPress}>
+      <ons-button   modifier={this.props.modifier} style={{...styles.button, ...this.props.style}} onClick={this.props.onPress}>
         {this.props.isLoading ?
           <Icon style={{color: this.props.color}}  size={12} spin icon='md-spinner' />
            : (
            this.props.iconName === '' ?
-               <span style={styles.text}>{this.props.children}</span> :
+               <div style={styles.text}>{this.props.children}</div> :
                <Icon icon={this.props.iconName} size={30} style={{color: Constants.Color.ButtonText}}/>)
         }
-      </OnsButton>
+      </ons-button>
     );
   }
 

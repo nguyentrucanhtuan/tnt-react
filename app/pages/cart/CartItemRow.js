@@ -214,7 +214,15 @@ class CartItemRow extends Component {
             this.props.addWishListItem(product, variation)
     }
     const onPressDelete = () => {
-
+      self = this;
+      ons.notification.confirm({
+         message: 'Are you sure?',
+         callback: function(answer) {
+           if(answer){
+             self.props.deleteCartItem(product, variation, quantity)
+           }
+         }
+       });
     }
     return (
           <div style={this.styles.buttons_wrapper}>

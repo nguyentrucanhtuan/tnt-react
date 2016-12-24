@@ -105,11 +105,6 @@ class Product extends Component {
 
   render() {
 
-
-    this._product = this.props.product;
-    this.isInWishList = this.props.wishLists.find((item)=> item.product.id == this._product.id) != undefined
-    const index = this.props.Cart.cartItems.findIndex((item)=> item.product.id == this._product.id);
-    this.inCartTotal = index == -1 ? 0 : this.props.Cart.cartItems[index].quantity;
     return (
       <Page key={this.props.productId} renderFixed={this.renderButtonGroup.bind(this)}>
         <Toolbar
@@ -119,13 +114,20 @@ class Product extends Component {
           wishList={this.props.wishList}/>
 
             {this.state.isWaiting ? <Spinner fullStretch/> :
-              this.renderProduct(this._product)}
+              this.renderProduct()}
 
       </Page>
     );
   }
 
-  renderProduct(product){
+  renderProduct(){
+
+    this._product = this.props.product;
+    console.log(this._product);
+    this.isInWishList = this.props.wishLists.find((item)=> item.product.id == this._product.id) != undefined
+    const index = this.props.Cart.cartItems.findIndex((item)=> item.product.id == this._product.id);
+    this.inCartTotal = index == -1 ? 0 : this.props.Cart.cartItems[index].quantity;
+    //this.inCartTotal = 0;
     return (
       <div className="product-detail">
         <ons-row height={300}>
@@ -135,9 +137,9 @@ class Product extends Component {
         </ons-row>
         <ons-row>
             <ons-col width="100%">
-              {this.renderTopInfo(product)}
-              {this.renderVariation(product)}
-              {this.renderDescription(product)}
+              {this.renderTopInfo(this._product)}
+              {this.renderVariation(this._product)}
+              {this.renderDescription(this._product)}
               {this.renderReviews(this._product)}
             </ons-col>
         </ons-row>

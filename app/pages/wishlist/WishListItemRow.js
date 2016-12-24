@@ -175,10 +175,7 @@ class WishListItemRow extends Component {
       ons.notification.confirm({
          message: 'Are you sure?',
          callback: function(answer) {
-           // Do something here.
-           console.log(answer)
            if(answer){
-             console.log(self.styles)
              self.props.removeWishListItem(product, variation)
            }
          }

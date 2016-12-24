@@ -6,14 +6,14 @@ import Constants from './../../Constants';
 import WishListItemRow from './WishListItemRow';
 import {addCartItem} from '../../reducers/Cart/actions'
 import {emptyWishList} from '../../reducers/WishList/actions'
-
+import { getRoute } from './../../routes'
 
 import {
   Page,
   List
 } from 'react-onsenui';
 
-class WishList extends React.Component {
+class WishList extends Component {
 
   constructor(props) {
     super(props);

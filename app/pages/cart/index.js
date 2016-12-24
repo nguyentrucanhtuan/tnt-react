@@ -4,10 +4,13 @@ import Toolbar from '../../components/Toolbar';
 import Button from "./../../components/Button";
 import CartItemRow from './CartItemRow';
 import Constants from './../../Constants';
+import { getRoute } from './../../routes'
 import {
   Page,
   List
 } from 'react-onsenui';
+
+import ons from 'onsenui';
 
 class Cart extends Component {
 
@@ -21,6 +24,7 @@ class Cart extends Component {
             paddingTop: 10,
             borderTopWidth: 1,
             borderTopColor: Constants.Color.ViewBorder,
+            display: 'flex'
         },
         totalText: {
             flex: 1,
@@ -37,6 +41,16 @@ class Cart extends Component {
             marginRight: 5,
         }
     };
+
+    this.opCheckOut = () => {
+        if (this.props.Cart.cartItems.length === 0)
+        {
+          ons.notification.alert("No product in cart")
+        }
+        else {
+          this.props.navigator.pushPage(getRoute('checkout'))
+        }
+    }
   }
 
   static propTypes = {
@@ -45,7 +59,7 @@ class Cart extends Component {
 
   render() {
     return (
-      <Page  key="Cart">
+      <Page  key="Cart" renderFixed={this.renderButtonCheckout.bind(this)}>
         <Toolbar navigator={this.props.navigator} />
         <div style={this.styles.container}>
           <div style={{
@@ -78,6 +92,28 @@ class Cart extends Component {
         renderRow={renderRow}
         enableEmptySections={true}
     />
+  }
+
+  renderButtonCheckout(){
+    return (
+      <div style={{position: 'fixed', bottom: 0, backgroundColor: 'white',padding: '0 20px', borderTop: '1px solid #ddd'}}>
+        <div style={this.styles.container_total}>
+            <label style={this.styles.totalText}>{'Total'}</label>
+            <span style={ this.styles.totalPrice}>
+                {Constants.Formatter.currency(this.props.Cart.totalPrice) }
+            </span>
+        </div>
+
+        <Button modifier='material--flat'
+            onPress={this.opCheckOut.bind(this)}
+            autoMargin={false}
+            style={{marginBottom: Constants.Dimension.ScreenWidth(0.05)}}
+            borderLess
+        >
+            {'Checkout'}
+        </Button>
+      </div>
+    )
   }
 }
 

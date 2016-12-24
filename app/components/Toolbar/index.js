@@ -27,11 +27,11 @@ class Toolbar extends React.Component {
     const title = navigator.pages[navigator.pages.length - 1].props.title;
 
     const openWishList = () =>  {
-      this.props.navigator.replacePage(getRoute('wishlist'))
+      this.props.navigator.pushPage(getRoute('wishlist'))
     }
 
     const openShopCart = () => {
-      this.props.navigator.replacePage(getRoute('cart'))
+      this.props.navigator.pushPage(getRoute('cart'))
     }
 
     return (
