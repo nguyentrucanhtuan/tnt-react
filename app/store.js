@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import {persistStore, autoRehydrate} from 'redux-persist'
-import localForage from 'localForage'
+import localForage from 'localforage'
 export default initialState => {
   const middleware = [thunk];
 
