@@ -81,20 +81,20 @@ module.exports = {
           loader: 'file-loader'
         },
 
-        //{
-          //  test: /localforage\/dist\/localforage.js/,
-            //loader: 'exports?LocalForage',
-        //},
+        {
+            test: /localforage\/dist\/localforage.js/,
+            loader: 'exports?LocalForage',
+        },
 
     ],
 
-    //noParse: [new RegExp('node_modules/localforage/dist/localforage.js')]
+    noParse: [new RegExp('node_modules/localforage/dist/localforage.js')]
   },
   node: {
     net: "empty",
     tls: "empty"
   },
-  //alias: { 'localforage': 'localforage/dist/localforage.js'},
+  alias: { 'localforage': 'localforage/dist/localforage.js'},
   postcss: function (webpack) {
       return [precss, autoprefixer];
   }
