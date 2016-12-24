@@ -31,7 +31,7 @@ export default class Button extends Component {
       color: Constants.Color.ButtonText,
       overlayColor: Constants.Color.ButtonBackground,
       iconName: '',
-      modifier: 'cta'
+      modifier: 'material'
       // size: 'large', // 'normal',
   };
 
