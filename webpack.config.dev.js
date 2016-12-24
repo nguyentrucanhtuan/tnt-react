@@ -81,10 +81,10 @@ module.exports = {
           loader: 'file-loader'
         },
 
-        {
+        /*{
             test: /localforage\/dist\/localforage.js/,
             loader: 'exports?LocalForage',
-        },
+        },*/
 
     ],
 
@@ -94,7 +94,7 @@ module.exports = {
     net: "empty",
     tls: "empty"
   },
-  alias: { 'localforage': 'localforage/dist/localforage.js'},
+  alias: { 'localForage': 'localforage/dist/localforage.js'},
   postcss: function (webpack) {
       return [precss, autoprefixer];
   }
