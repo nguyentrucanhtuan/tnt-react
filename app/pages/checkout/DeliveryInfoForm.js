@@ -7,6 +7,7 @@ import Tcomb from 'tcomb-form/lib';
 import i18n from 'tcomb-form/lib/i18n/en';
 import templates from 'tcomb-form-templates-bootstrap';
 import 'bootswatch/flatly/bootstrap.css'
+import Validator from "../../utils/Validator"
 Tcomb.form.Form.i18n = i18n;
 Tcomb.form.Form.templates = templates
 

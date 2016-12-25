@@ -96,6 +96,18 @@ class WooWorker extends Component {
       }).catch((error) => console.log(error));
   }
 
+  createOrder(data, callback) {
+      console.log("CREATE ORDER")
+      Api.post('orders', data).then((responseData) => {
+          if (responseData.code === undefined)
+              callback(responseData);
+          else {
+              alert(JSON.stringify(data.code));
+              console.log(JSON.stringify(responseData));
+          }
+      }).catch((error) => console.log(error));
+  }
+
 }
 
 export default new WooWorker();
