@@ -10,7 +10,8 @@ import { getRoute } from './../../routes'
 
 import {
   Page,
-  List
+  List,
+  BottomToolbar
 } from 'react-onsenui';
 
 class WishList extends Component {
@@ -67,7 +68,7 @@ class WishList extends Component {
 
   render() {
     return (
-      <Page key="WishList" renderFixed={this.renderButtonGroup.bind(this)}>
+      <Page key="WishList" renderBottomToolbar={this.renderButtonGroup.bind(this)}>
         <Toolbar navigator={this.props.navigator} />
         <div style={this.styles.container}>
           {this.props.WishList.wishListItems.length == 0 ?
@@ -80,22 +81,35 @@ class WishList extends Component {
   }
 
   renderButtonGroup(){
-    return (<div style={{position: 'fixed', bottom: 0, backgroundColor: 'white'}}>
-      <Button
-          onPress={this.opAddAllToCart.bind(this)}
-          autoMargin={true}
-          borderLess>
-         {"Move All To Cart"}
-      </Button>
-      <Button
-          onPress={() => this.props.emptyWishList()}
-          autoMargin={true}
-          style={{marginBottom: Constants.Dimension.ScreenWidth(0.02)}}
-          color='black'
-          overlayColor='white'>
-          {"Empty Wish List"}
-      </Button>
-    </div>)
+    return (
+      <BottomToolbar modifier="material" >
+        <div style={{ backgroundColor: 'white'}}>
+          <Button
+              onPress={this.opAddAllToCart.bind(this)}
+              autoMargin={true}
+              autoWidth={false}
+              style={{
+                width: Constants.Dimension.ScreenWidth(0.43) ,
+                height: 35,
+                marginBottom: Constants.Dimension.ScreenWidth(0.02)}}
+              borderLess>
+             {"Move All To Cart"}
+          </Button>
+          <Button
+              onPress={() => this.props.emptyWishList()}
+              autoMargin={true}
+              autoWidth={false}
+              style={{
+                width: Constants.Dimension.ScreenWidth(0.43) ,
+                height: 35,
+                marginBottom: Constants.Dimension.ScreenWidth(0.02)}}
+              color='black'
+              overlayColor='white'>
+              {"Empty Wish List"}
+          </Button>
+      </div>
+    </BottomToolbar>
+  );
   }
 
 

@@ -7,7 +7,8 @@ import Constants from './../../Constants';
 import { getRoute } from './../../routes'
 import {
   Page,
-  List
+  List,
+  BottomToolbar
 } from 'react-onsenui';
 
 import ons from 'onsenui';
@@ -21,7 +22,7 @@ class Cart extends Component {
         container: {flex: 1},
         container_total: {
             flexDirection: "row",
-            paddingTop: 10,
+            paddingTop: 0,
             borderTopWidth: 1,
             borderTopColor: Constants.Color.ViewBorder,
             display: 'flex'
@@ -31,6 +32,7 @@ class Cart extends Component {
             color: Constants.Color.TextLight,
             fontSize: 16,
             fontWeight: "bold",
+            paddingTop: 10
         },
         totalPrice: {
             flex: 1,
@@ -38,7 +40,8 @@ class Cart extends Component {
             alignItems: "center",
             textAlign: "right",
             fontWeight: "bold",
-            marginRight: 5,
+            marginRight: 50,
+            paddingTop: 9
         }
     };
 
@@ -59,7 +62,7 @@ class Cart extends Component {
 
   render() {
     return (
-      <Page  key="Cart" renderFixed={this.renderButtonCheckout.bind(this)}>
+      <Page  key="Cart" renderBottomToolbar={this.renderButtonCheckout.bind(this)}>
         <Toolbar navigator={this.props.navigator} />
         <div style={this.styles.container}>
           <div style={{
@@ -96,23 +99,27 @@ class Cart extends Component {
 
   renderButtonCheckout(){
     return (
-      <div style={{position: 'fixed', bottom: 0, backgroundColor: 'white',padding: '0 20px', borderTop: '1px solid #ddd'}}>
+      <BottomToolbar modifier="material" >
+      <div style={{ backgroundColor: 'white',padding: '0 20px', borderTop: '1px solid #ddd'}}>
         <div style={this.styles.container_total}>
             <label style={this.styles.totalText}>{'Total'}</label>
             <span style={ this.styles.totalPrice}>
                 {Constants.Formatter.currency(this.props.Cart.totalPrice) }
             </span>
+            <Button modifier='material--flat'
+                onPress={this.opCheckOut.bind(this)}
+                autoMargin={false}
+                autoWidth={false}
+                style={{height:35}}
+                borderLess
+            >
+                {'Checkout'}
+            </Button>
         </div>
 
-        <Button modifier='material--flat'
-            onPress={this.opCheckOut.bind(this)}
-            autoMargin={false}
-            style={{marginBottom: Constants.Dimension.ScreenWidth(0.05)}}
-            borderLess
-        >
-            {'Checkout'}
-        </Button>
+
       </div>
+    </BottomToolbar>
     )
   }
 }

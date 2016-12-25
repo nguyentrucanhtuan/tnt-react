@@ -108,6 +108,15 @@ class WooWorker extends Component {
       }).catch((error) => console.log(error));
   }
 
+  rdersByCustomerId(id, callback) {
+      Api.get('orders', {customer: id}).then((responseData) => {
+          if (responseData.message === undefined)
+              callback(responseData);
+          else
+              console.log(JSON.stringify(responseData.message));
+      }).catch((error) => console.log(error));
+  }
+
 }
 
 export default new WooWorker();

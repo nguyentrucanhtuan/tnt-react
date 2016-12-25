@@ -5,6 +5,7 @@ import Product from './pages/product'
 import Wishlist from './pages/wishlist'
 import Cart from './pages/cart'
 import Checkout from './pages/checkout'
+import MyOrders from './pages/myorders'
 export const initialRouteId = 'home'
 
 
@@ -16,6 +17,7 @@ export const Routes = {
   wishlist: { component: Wishlist, title: 'Wishlist', id: 'wishlist' , key : 'wishlist', swipeable : false},
   cart: { component: Cart, title: 'Cart', id: 'cart' , key : 'cart', swipeable : false},
   checkout: { component: Checkout, title: 'Checkout', id: 'checkout' , key : 'checkout', swipeable : false},
+  myorders: { component: MyOrders, title: 'My Orders', id: 'myorders' , key : 'myorders', swipeable : false},
   //longList: { component: LongList, title: 'Long list', id: 'longList' }
 }
 
