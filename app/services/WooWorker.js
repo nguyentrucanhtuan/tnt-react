@@ -17,6 +17,7 @@ const Api = new WooCommerceAPI({
 class WooWorker extends Component {
   customerByEmail(email, callback, callback2) {
       Api.get('customers', {email: email}).then((responseData) => {
+          console.log(responseData)
           if (responseData.length != 0)
               callback(responseData[0]);
           else {
@@ -108,7 +109,7 @@ class WooWorker extends Component {
       }).catch((error) => console.log(error));
   }
 
-  rdersByCustomerId(id, callback) {
+  ordersByCustomerId(id, callback) {
       Api.get('orders', {customer: id}).then((responseData) => {
           if (responseData.message === undefined)
               callback(responseData);

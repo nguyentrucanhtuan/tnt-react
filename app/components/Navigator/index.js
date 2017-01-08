@@ -12,6 +12,7 @@ import {
 } from 'react-onsenui';
 
 import Menu from '../../pages/menu'
+import AuthForm from '../../components/AuthForm'
 import { getInitialRoute } from './../../routes'
 
 import Constants from './../../Constants';
@@ -76,9 +77,13 @@ class Navigator extends Component {
             navigator={this.navigator}
             onMenuItemClick={closeMenu}
             currentRouteId={currentRoute} />
+
+
+
         </SplitterSide>
 
         <SplitterContent>
+          <AuthForm />
           <OnsNavigator
             initialRoute={initialRoute}
             renderPage={this.renderPage}

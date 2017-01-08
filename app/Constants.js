@@ -8,6 +8,9 @@ const ThemeColor2 = '#00aef0';
 const ThemeColor3 = '#77a464';
 
 const Constants = {
+    JWTAuth: {
+      url: 'http://nguyenlieuphache.com/wp-json/jwt-auth/v1/token'
+    },
     WordPress: {
         Address: 'http://nguyenlieuphache.com/api/',
     },
@@ -21,8 +24,8 @@ const Constants = {
         RootCategoryId: 0,
     },
     Auth0: {
-        clientId: 'Hgz4NiteanyqWYVCP3k7iP83Du0Ydv4A',
-        domain: 'piksal.auth0.com',
+        clientId: '287hlzznh1hFq5c9gUEnTXaUj76eSd1N',
+        domain: 'tntdrink.au.auth0.com',
     },
     Firebase: {
         apiKey: "AIzaSyAnKONYwru11yWAA8F4F023kdVCknBbliA",
@@ -69,8 +72,8 @@ const Constants = {
         Back: 'ios-arrow-back',
         Config: 'ios-settings',
         More: 'ios-more',
-        SignIn: 'ios-log-in',
-        SignOut: 'ios-log-out',
+        SignIn: 'ion-log-in',
+        SignOut: 'ion-log-out',
         ShoppingCart: 'ios-cart',
         ShoppingCartEmpty: 'ios-cart-outline',
         Sort: 'ios-funnel',
@@ -90,8 +93,8 @@ const Constants = {
     },
     Format: {
         Currency: {
-            CurrencySymbol: '$',
-            IsSymbolPrefix: true, //false for suffix
+            CurrencySymbol: 'VND',
+            IsSymbolPrefix: false, //false for suffix
             ThousandSeparator: ',',
             DecimalSeparator: "."
         },
@@ -273,20 +276,20 @@ Constants.ProductCard = {
 }
 Constants.Formatter = {
     currency(value) {
-        // let integer = (value / 1).toString();
-        // let _fractional = (value % 1);
-        // const fractional = _fractional.toString();
-        //
-        // let result = "";
-        // for (let i = integer.length - 1; i >= 0; i--) {
-        //     result = integer.charAt(i) + result;
-        //     if ((integer.length - i) % 3 == 0 && i != 0) result = Constants.Format.Currency.ThousandSeparator + result;
-        // }
-        // result = result + (_fractional == 0 ? "" : (Constants.Format.Currency.DecimalSeparator + "_" + fractional));
+        let integer = (value / 1).toString();
+        let _fractional = (value % 1);
+         const fractional = _fractional.toString();
+
+        let result = "";
+        for (let i = integer.length - 1; i >= 0; i--) {
+             result = integer.charAt(i) + result;
+             if ((integer.length - i) % 3 == 0 && i != 0) result = Constants.Format.Currency.ThousandSeparator + result;
+        }
+         result = result + (_fractional == 0 ? "" : (Constants.Format.Currency.DecimalSeparator + "_" + fractional));
         return (
             Constants.Format.Currency.IsSymbolPrefix ?
-            Constants.Format.Currency.CurrencySymbol + value :
-            value + Constants.Format.Currency.CurrencySymbol);
+            Constants.Format.Currency.CurrencySymbol + result :
+            result + ' '+Constants.Format.Currency.CurrencySymbol);
     }
 }
 Constants.Swiper = {

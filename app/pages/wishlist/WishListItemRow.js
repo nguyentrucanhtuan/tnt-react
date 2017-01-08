@@ -89,7 +89,7 @@ class WishListItemRow extends Component {
               {productImage}
           </ons-col>
           <ons-col width="70%" height={120}>
-            <div className="product" style={{padding: "0px 0px 0px 10px"}}>
+            <div className="product" style={{paddingLeft: 5}}>
                 <h3 className="product-name" style={this.styles.product_name}>{_product.name}</h3>
                 {this.renderPriceGroup(_variation == undefined ? _product : _variation)}
                 {productVariations}

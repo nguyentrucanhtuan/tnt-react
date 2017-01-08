@@ -110,7 +110,7 @@ class Cart extends Component {
                 onPress={this.opCheckOut.bind(this)}
                 autoMargin={false}
                 autoWidth={false}
-                style={{height:35}}
+                style={{height:35, marginTop: 4}}
                 borderLess
             >
                 {'Checkout'}
