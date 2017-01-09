@@ -65,7 +65,19 @@ module.exports = {
         },
         {
           test: /\.json$/,
-          loader: 'json-loader'
+          loader: 'json-loader',
+          exclude: [
+            path.resolve(__dirname, './routes.json'),
+          ],
+        },
+        {
+          test: /\.json$/,
+          include: [
+            path.resolve(__dirname, './routes.json'),
+          ],
+          loaders: [
+            path.resolve(__dirname, './app/utils/routes-loader.js'),
+          ],
         },
         {
             test: /\.css$/,

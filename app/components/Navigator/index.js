@@ -19,6 +19,7 @@ import Constants from './../../Constants';
 
 
 const initialRoute = getInitialRoute()
+console.log(initialRoute);
 
 class Navigator extends Component {
 
@@ -85,7 +86,7 @@ class Navigator extends Component {
         <SplitterContent>
           <AuthForm />
           <OnsNavigator
-            initialRoute={initialRoute}
+            initialRoute={this.props.initialRoute}
             renderPage={this.renderPage}
             onPrePush={this.onPrePush}
             onPostPush={this.onPostPush}
