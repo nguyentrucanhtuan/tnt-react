@@ -1,6 +1,6 @@
 var path = require('path');
 var express = require('express');
-var querystring =  require('querystring');
+const querystring = require('querystring');
 var webpack = require('webpack');
 var config = require('./webpack.config.dev');
 const port = (process.env.PORT || 8080)
@@ -60,8 +60,11 @@ router.route('/products/:product_id').get(function(req, res) {
 });
 
 router.route('/products').get(function(req, res) {
-  var querystring = querystring.stringify(req.query)
-  WooCommerce.get('products?'+querystring, function(err, response, body) {
+  console.log(querystring)
+  console.log(req.query)
+  var querystr = querystring.stringify(req.query)
+  console.log(querystr)
+  WooCommerce.get('products?'+querystr, function(err, response, body) {
       res.header("Content-Type", "application/json; charset=utf-8");
       res.status(200).json(JSON.parse(body));
   });
