@@ -1,5 +1,6 @@
 var path = require('path');
 var express = require('express');
+var querystring =  require('querystring');
 var webpack = require('webpack');
 var config = require('./webpack.config.dev');
 const port = (process.env.PORT || 8080)
@@ -28,15 +29,16 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
 
+var WooCommerce = new WooCommerceAPI({
+  url: 'http://nguyenlieuphache.com',
+  consumerKey: 'ck_a61fb311c17c8394a05fa1930eabc747d9d3e811',
+  consumerSecret: 'cs_5220811eef0c9d0bf31ef459d87a758efa343fca',
+  wpAPI: true,
+  version: 'wc/v1',
+});
+
 
 router.get('/categories', function (req, res) {
-  var WooCommerce = new WooCommerceAPI({
-    url: 'http://nguyenlieuphache.com',
-    consumerKey: 'ck_a61fb311c17c8394a05fa1930eabc747d9d3e811',
-    consumerSecret: 'cs_5220811eef0c9d0bf31ef459d87a758efa343fca',
-    wpAPI: true,
-    version: 'wc/v1',
-  });
 
   WooCommerce.get('products/categories', function(err, response, body) {
     res.header("Content-Type", "application/json; charset=utf-8");
@@ -49,6 +51,23 @@ router.get('/categories', function (req, res) {
   });*/
 
 })
+
+router.route('/products/:product_id').get(function(req, res) {
+  WooCommerce.get('products/' + req.params.product_id, function(err, response, body) {
+      res.header("Content-Type", "application/json; charset=utf-8");
+      res.status(200).json(JSON.parse(body));
+  });
+});
+
+router.route('/products').get(function(req, res) {
+  var querystring = querystring.stringify(req.query)
+  WooCommerce.get('products?'+querystring, function(err, response, body) {
+      res.header("Content-Type", "application/json; charset=utf-8");
+      res.status(200).json(JSON.parse(body));
+  });
+});
+
+
 
 app.use('/api', router);
 
