@@ -19,11 +19,21 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.use(express.static(__dirname + '/public/'));
 
-app.get('/categories', function (req, res) {
+// ROUTES FOR OUR API
+// =============================================================================
+var router = express.Router();              // get an instance of the express Router
+
+// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+router.get('/', function(req, res) {
+    res.json({ message: 'hooray! welcome to our api!' });
+});
+
+
+router.get('/categories', function (req, res) {
   var WooCommerce = new WooCommerceAPI({
-    url: 'http://demo.nguyenlieuphache.com.vn',
-    consumerKey: 'ck_a776b8b6158048f44a27f9019a42ee80922aa186',
-    consumerSecret: 'cs_53dffca3950806f7c226fb1a823637596b45870e',
+    url: 'http://nguyenlieuphache.com',
+    consumerKey: 'ck_a61fb311c17c8394a05fa1930eabc747d9d3e811',
+    consumerSecret: 'cs_5220811eef0c9d0bf31ef459d87a758efa343fca',
     wpAPI: true,
     version: 'wc/v1',
   });
@@ -39,6 +49,9 @@ app.get('/categories', function (req, res) {
   });*/
 
 })
+
+app.use('/api', router);
+
 
 app.get('*', function(req, res) {
   res.sendFile(indexPath);
