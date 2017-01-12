@@ -24,7 +24,7 @@ class Toolbar extends React.Component {
 
   render() {
     const { openMenu, navigator } = this.props;
-    const title = navigator.pages[navigator.pages.length - 1].props.title;
+    const title = this.props.title ? this.props.title : navigator.pages[navigator.pages.length - 1].props.title;
 
     const openWishList = () =>  {
       this.props.navigator.pushPage(getRoute('wishlist'))

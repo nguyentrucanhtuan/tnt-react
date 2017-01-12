@@ -39,14 +39,23 @@ class Category extends Component {
   }
   componentWillMount(){
     this.props.clearProducts();
+    this.props.selectCategory(this.props.initCategoryId,undefined)
   }
 
   componentDidMount() {
-      this.props.fetchProductsByCategoryId(this.props.Category.selectedCategoryId, this.limitPerPage, this.pageNumber++);
+      console.log('did mount first')
+      if(!this.props.Category.selectedCategoryId){
+
+        this.props.fetchProductsByCategoryId(this.props.initCategoryId, this.limitPerPage, this.pageNumber++);
+      }else{
+        this.props.fetchProductsByCategoryId(this.props.Category.selectedCategoryId, this.limitPerPage, this.pageNumber++);
+      }
+
   }
 
   componentWillReceiveProps(nextProps) {
      const {Category, Product} = nextProps;
+    // console.log(initCategoryId);
      if (this.currentCategoryId !== Category.selectedCategoryId) {
        this.currentCategoryId = Category.selectedCategoryId;
        this.pageNumber = 1;

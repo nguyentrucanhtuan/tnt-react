@@ -71,6 +71,12 @@ function render(location) {
       route = Object.assign({}, route, {productId : parseInt(params.id)})
       ReactDOM.render(<Provider store={store}><Navigator initialRoute={route}/></Provider>, container);
     },
+    'categories/:id': function (params) {
+      console.log('in product page: '+params.id)
+      let route = getRoute('category');
+      route = Object.assign({}, route, {initCategoryId : parseInt(params.id)})
+      ReactDOM.render(<Provider store={store}><Navigator initialRoute={route}/></Provider>, container);
+    },
     'about': function () {
       let route = getRoute('about');
       ReactDOM.render(<Provider store={store}><Navigator initialRoute={route}/></Provider>, container);
