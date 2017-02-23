@@ -70,6 +70,15 @@ class WooWorker extends Component {
       }).catch(error);
   }
 
+  categoryById(callback, error = (e) => console.log(e), id){
+    Api.get('products/categories/'+id).then((json)=> {
+      if (json.message === undefined)
+          callback(json);
+      else
+          error(JSON.stringify(json.message));
+    }).catch(error)
+  }
+
   productById(callback, error = (e) => console.log(e), id) {
       Api.get('products/' + id).then((json) => {
           if (json.message === undefined)
@@ -86,6 +95,16 @@ class WooWorker extends Component {
           else
               error(JSON.stringify(json.message));
       }).catch(error);
+  }
+
+
+  allProducts(callback, error = (e) =>  console.log(e),per_page, page){
+    Api.get('products', {per_page: per_page, page: page}).then((json) => {
+      if (json.message === undefined)
+          callback(json);
+      else
+          error(JSON.stringify(json.message));
+    }).catch(error);
   }
 
   reviewByProductId(id, callback) {

@@ -7,7 +7,7 @@ const port = (process.env.PORT || 8080)
 var app = express();
 var compiler = webpack(config);
 var WooCommerceAPI = require('woocommerce-api');
-
+//var localForage = require('localforage');
 const indexPath = path.join(__dirname, '/index.html')
 const publicPath = express.static(path.join(__dirname, '../public'))
 
@@ -31,8 +31,8 @@ router.get('/', function(req, res) {
 
 var WooCommerce = new WooCommerceAPI({
   url: 'http://nguyenlieuphache.com',
-  consumerKey: 'ck_a61fb311c17c8394a05fa1930eabc747d9d3e811',
-  consumerSecret: 'cs_5220811eef0c9d0bf31ef459d87a758efa343fca',
+  consumerKey: 'ck_d42aca2c0c11fc0f81dd6342c759a1958056cc42',
+  consumerSecret: 'cs_c4dd7d8cd71df6ad9e2d9add9b7e216af0cb2e55',
   wpAPI: true,
   version: 'wc/v1',
 });
@@ -59,6 +59,15 @@ router.route('/products/:product_id').get(function(req, res) {
   });
 });
 
+
+router.route('/addWistList/:product_id').get(function(req, res){
+  WooCommerce.get('products/' + req.params.product_id, function(err, response, body) {
+      res.header("Content-Type", "application/json; charset=utf-8");
+      var product = JSON.parse(body);
+      res.status(200).json(JSON.parse(body));
+
+  });
+})
 router.route('/products').get(function(req, res) {
   console.log(querystring)
   console.log(req.query)

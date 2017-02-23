@@ -7,7 +7,9 @@ import Customer  from './Customer/index';
 import currentRoute from './Route';
 import isMenuOpen from './Menu'
 import authorize from './Auth'
-import isSwipeable from './Swipeable'
+import isSwipeable from './Swipeable';
+import CategoryOrder from './Order';
+import Country from './Country'
 
 // ... other reducers
 
@@ -18,9 +20,11 @@ export default combineReducers({
     Cart,
     WishList,
     Customer,
+    Country,
     // ... other reducers
     currentRoute,
     isMenuOpen,
     authorize,
-    isSwipeable
+    isSwipeable,
+    CategoryOrder
 });

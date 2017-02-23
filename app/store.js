@@ -20,7 +20,7 @@ export default initialState => {
   const store = compose(
       applyMiddleware(...middleware),
       autoRehydrate())(createStore)(reducers);
-  persistStore(store, {storage: localForage, blacklist: ['Category', 'Product']})
+  persistStore(store, {storage: localForage, blacklist: ['Category','CategoryOrder','Product']})
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

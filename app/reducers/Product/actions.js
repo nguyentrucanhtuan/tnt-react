@@ -93,3 +93,13 @@ export function fetchProductsByCategoryId(categoryId, per_page, page) {
         return WooWorker.productsByCategoryId(callback, error, categoryId, per_page, page);
     }
 }
+
+export function fetchAllProducts(per_page, page){
+  return (dispatch) => {
+    dispatch(requestProducts());
+    const callback = (json) => dispatch(receiveProducts(json));
+    const error = (error) => dispatch(productsFailure(error));
+    return WooWorker.allProducts(callback, error, per_page, page);
+
+  }
+}

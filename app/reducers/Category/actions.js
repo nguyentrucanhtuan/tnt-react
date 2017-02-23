@@ -42,3 +42,17 @@ export function fetchAllCategories() {
         );
     }
 }
+
+export function fetchCategoryById(categoryId, _callback){
+    return (dispatch) => {
+        //dispatch(requestProduct());
+        const callback = (json) => {
+          //  dispatch(receiveProduct(json));
+            dispatch(selectCategory(json.id,json.name));
+            _callback();
+
+        };
+        const error = (error) => dispatch(categoriesFailure(error));
+        return WooWorker.categoryById(callback, error, categoryId);
+    }
+}

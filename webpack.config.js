@@ -15,6 +15,11 @@ var config = {
       inline: true,
       port: 8080
    },
+   resolve: {
+    alias: {
+      'react-native': 'react-native-web'
+    }
+  }
 
    module: {
       //noParse: /node_modules\/localForage\/dist\/localforage.js/,

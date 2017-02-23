@@ -16,8 +16,8 @@ const Constants = {
     },
     WooCommerce: {
         url: 'http://nguyenlieuphache.com/',
-        consumerKey: 'ck_a61fb311c17c8394a05fa1930eabc747d9d3e811',
-        consumerSecret: 'cs_5220811eef0c9d0bf31ef459d87a758efa343fca',
+        consumerKey: 'ck_d42aca2c0c11fc0f81dd6342c759a1958056cc42',
+        consumerSecret: 'cs_c4dd7d8cd71df6ad9e2d9add9b7e216af0cb2e55',
         wp_api: true,
         version: 'wc/v1',
         timeout: 20, //request timeout
@@ -67,21 +67,21 @@ const Constants = {
         PlaceHolder: require('./images/placeholderImage.png'),
     },
     Icon: { //App's icons. Checkout http://fontawesome.io/icons/ for more icons.
-        Menu: 'ios-menu',
-        Home: 'ios-home',
-        Back: 'ios-arrow-back',
+        Menu: 'ion-android-menu',
+        Home: 'ion-ios-home',
+        Back: 'ion-ios-arrow-back',
         Config: 'ios-settings',
         More: 'ios-more',
         SignIn: 'ion-log-in',
         SignOut: 'ion-log-out',
-        ShoppingCart: 'ios-cart',
-        ShoppingCartEmpty: 'ios-cart-outline',
+        ShoppingCart: 'ion-ios-cart',
+        ShoppingCartEmpty: 'ion-ios-cart-outline',
         Sort: 'ios-funnel',
-        Filter: 'ios-funnel-outline',
-        ShowItem: 'ios-arrow-dropdown',
-        HideItem: 'ios-arrow-dropup',
-        ListMode: 'ios-list-box',
-        GridMode: 'ios-grid',
+        Filter: 'ion-ios-funnel-outline',
+        ShowItem: 'ion-android-arrow-dropdown',
+        HideItem: 'ion-android-arrow-dropup',
+        ListMode: 'ion-ios-list-outline',
+        GridMode: 'ion-ios-grid-view-outline',
         RatingFull: 'ion-ios-star',
         RatingEmpty: 'ion-ios-star-outline',
         Wishlist: 'ion-ios-heart',
@@ -90,6 +90,7 @@ const Constants = {
         AddToCart: 'ion-ios-cart',
         MyOrder: 'ios-cube',
         News: 'ios-paper',
+        Search: 'ion-ios-search',
     },
     Format: {
         Currency: {
@@ -101,7 +102,7 @@ const Constants = {
         Date: {}
     },
     Color: {
-        DirtyBackground: '#F0F0F0',
+        DirtyBackground: '#F2F2F2',
 
         //Toolbar
         Toolbar: 'white',
@@ -244,10 +245,17 @@ Constants.ProductCard = {
             marginLeft: Constants.Dimension.ScreenWidth(0.05),
             marginRight: Constants.Dimension.ScreenWidth(0.1 / 3),
             marginTop: Constants.Dimension.ScreenWidth(0.05),
+            flexDirection: 'row'
+        },
+        infoContainer: {
+          marginTop: Constants.Dimension.ScreenWidth(0.05),
+
         },
         image: {
-            width: Constants.Dimension.ScreenWidth(0.9) - 2,
-            height: 1.2 * Constants.Dimension.ScreenWidth(0.9),
+            width: Constants.Dimension.ScreenWidth(0.9)/3 - 2,
+            height: 1.2 * Constants.Dimension.ScreenWidth(0.9)/3,
+          //  width: 150,
+          //  height: 150
         },
         text: {
             color: "black",
@@ -262,10 +270,14 @@ Constants.ProductCard = {
             marginLeft: Constants.Dimension.ScreenWidth(0.1 / 3),
             marginRight: 0,
             marginTop: Constants.Dimension.ScreenWidth(0.1 / 3),
+            flexDirection: 'column'
+        },
+        infoContainer: {
+
         },
         image: {
             width: (Constants.Dimension.ScreenWidth(0.9) / 2) - 2,
-            height: 1.2 * (Constants.Dimension.ScreenWidth(0.9) / 2),
+            height: 1 * (Constants.Dimension.ScreenWidth(0.9) / 2),
         },
         text: {
             fontSize: 14,
@@ -310,4 +322,32 @@ Constants.Swiper = {
         marginRight: 4
     },
 }
+
+Constants.WooImageFetcher = (uri, containerWidth) => {
+    //     Thumbnail: {width: 150, height: 150},
+    //     Medium: {width: 235, height: 300},
+    //     Large: {width: 803, height: 1024},
+
+    const DPI_NUMBER = 1.5;
+
+    const index = uri.lastIndexOf('.');
+    let editedURI = uri.slice(0, index);
+    let defaultType = uri.slice(index,);
+
+    switch (true) {
+        case true:
+            editedURI = editedURI + '-150x150' + defaultType;
+            break;
+        // case containerWidth * DPI_NUMBER < 235:
+        //     editedURI = editedURI + '-300x300' + defaultType;
+        //     break;
+        // case containerWidth * DPI_NUMBER < 803:
+        //     editedURI = editedURI + '-803x1024' + defaultType;
+        //     break;
+        // default:
+        // editedURI = editedURI + defaultType;
+    }
+    return editedURI;
+}
+
 export default Constants;

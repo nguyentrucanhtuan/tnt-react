@@ -28,6 +28,9 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.json', '.css', '.html', '.styl'],
 
     unsafeCache: true,
+    alias: {
+      'react-native': 'react-native-web'
+    }
 
   },
 
@@ -106,7 +109,9 @@ module.exports = {
     net: "empty",
     tls: "empty"
   },
-  alias: { 'localforage': 'localforage/dist/localforage.js'},
+  alias: {
+    'localforage': 'localforage/dist/localforage.js'
+  },
   postcss: function (webpack) {
       return [precss, autoprefixer];
   }
