@@ -21,7 +21,7 @@ import ProductCard from "./ProductCard";
 class Category extends Component {
   constructor(props) {
       super(props);
-      this.styles = {container: {flex: 1}};
+      this.styles = {container: {flex: 1,height : Constants.Dimension.ScreenHeight() - 80}};
       this.currentCategoryId = this.props.initCategoryId;
       this.currentViewMode = this.props.Product.viewMode;
       this.pageNumber = 1;
@@ -92,16 +92,13 @@ class Category extends Component {
            onPress={goToProduct}
            viewMode={this.props.Product.viewMode}
            product={product}
-           addCartItem={this.props.addCartItem}
-           addWishListItem={this.props.addWishListItem}
-           removeWishListItem={this.props.removeWishListItem}
-           wishLists= {this.props.wishLists}
        />);
     }
 
 
 
     const onEndReached = () => {
+      console.log('on end reached')
       if (!this.props.Product.isFetching && this.props.Product.stillFetch)
           this.props.fetchProductsByCategoryId(this.props.Category.selectedCategoryId, this.limitPerPage, this.pageNumber++);
     }
@@ -142,6 +139,7 @@ class Category extends Component {
 }
 
 const mapStateToProps = (state) => {
+   console.log(state.Product);
     return {
         Category: state.Category,
         Product: state.Product,

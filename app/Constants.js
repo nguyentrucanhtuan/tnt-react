@@ -16,8 +16,8 @@ const Constants = {
     },
     WooCommerce: {
         url: 'http://nguyenlieuphache.com/',
-        consumerKey: 'ck_d42aca2c0c11fc0f81dd6342c759a1958056cc42',
-        consumerSecret: 'cs_c4dd7d8cd71df6ad9e2d9add9b7e216af0cb2e55',
+        consumerKey: 'ck_2af2f0bb181a09f12f61f4d01e2cd7671270443b',
+        consumerSecret: 'cs_a2bf72c67c828f1608bd0d520fcae67774eeb775',
         wp_api: true,
         version: 'wc/v1',
         timeout: 20, //request timeout

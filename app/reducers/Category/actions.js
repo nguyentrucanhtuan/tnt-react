@@ -28,6 +28,7 @@ export function receiveCategories(json) {
 }
 
 export function categoriesFailure(error) {
+   console.log(error)
     return {
         type: CATEGORIES_FAILURE,
         error: error,
@@ -52,7 +53,9 @@ export function fetchCategoryById(categoryId, _callback){
             _callback();
 
         };
-        const error = (error) => dispatch(categoriesFailure(error));
+        const error = (error) => {
+          dispatch(categoriesFailure(error))
+        };
         return WooWorker.categoryById(callback, error, categoryId);
     }
 }

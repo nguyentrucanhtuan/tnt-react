@@ -130,6 +130,7 @@ class WooWorker extends Component {
 
   ordersByCustomerId(id, callback) {
       Api.get('orders', {customer: id}).then((responseData) => {
+
           if (responseData.message === undefined)
               callback(responseData);
           else
