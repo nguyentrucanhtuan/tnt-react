@@ -65,7 +65,7 @@ routerManager
    'dat-hang':  function(params){
      console.log('in dat hang page ')
      //let route = getRoute('order');
-     renderComponent(<Order wishList={true} cart={true} search={true} title={'Đặt hàng'}/>);
+     renderComponent(<Order wishList={true} cart={true} search={true} title={'Đặt hàng'} initCategoryId={0}/>);
      //ReactDOM.render(<Provider store={store}><Navigator initialRoute={route}/></Provider>, container);
    },
    'gio-hang':  function(params){
