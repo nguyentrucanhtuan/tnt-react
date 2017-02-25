@@ -10,6 +10,8 @@ import AppEventEmitter from './../../utils/AppEventEmitter';
 import Constants from './../../Constants';
 import ToolbarIcon from './ToolbarIcon';
 import { navigate } from './../../RouterManager'
+import { openMenu, closeMenu } from '../../actions/menu'
+import { openSearch, closeSearch } from '../../actions/search'
 import {
   Icon,
 } from 'react-onsenui';
@@ -99,7 +101,7 @@ class ToolbarNative extends Component {
 
 
   renderMenu() {
-      const openMenu = () => AppEventEmitter.emit(Constants.EmitCode.SideMenuOpen);
+      const openMenu = () => this.props.openMenu();
       const goBack = () => {
           if (this.backEnable) {
               this.backEnable = false;
@@ -130,7 +132,7 @@ class ToolbarNative extends Component {
   }
 
   renderSearch() {
-      const openWishList = () => AppEventEmitter.emit(Constants.EmitCode.SearchModalOpen);
+      const openWishList = () => this.props.openSearch();
       return <ToolbarIcon name={Constants.Icon.Search} onPress={openWishList}/>
   }
 }
@@ -144,7 +146,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+      openMenu: () => dispatch(openMenu()),
+      closeMenu: () => dispatch(closeMenu()),
+      openSearch: () => dispatch(openSearch()),
+      closeSearch: () => dispatch(closeSearch()),
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToolbarNative);

@@ -67,7 +67,7 @@ export default class Button extends Component {
             style={[styles.button, this.props.style]}
             onPress={this.props.onPress}>
             { this.props.isLoading ?
-                <Icon size={12} icon="ion-load-c" style={{color:this.props.color}} spin={true}/> : (
+                  <ActivityIndicator size='small' color={this.props.color}/> : (
                 this.props.iconName === '' ?
                     <Text style={styles.text}>{this.props.children}</Text> :
                     <View>

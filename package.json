@@ -53,6 +53,7 @@
     "react-burger-menu": "^1.10.9",
     "react-collapsible": "^1.2.1",
     "react-dom": "^15.4.0",
+    "react-drawer": "^1.2.5",
     "react-native-web": "0.0.72",
     "react-notify-toast": "^0.1.4",
     "react-onsenui": "^1.0.3",

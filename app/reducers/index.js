@@ -6,6 +6,7 @@ import WishList from './WishList';
 import Customer  from './Customer/index';
 import currentRoute from './Route';
 import isMenuOpen from './Menu'
+import isSearchOpen from './Search'
 import authorize from './Auth'
 import isSwipeable from './Swipeable';
 import CategoryOrder from './Order';
@@ -24,6 +25,7 @@ export default combineReducers({
     // ... other reducers
     currentRoute,
     isMenuOpen,
+    isSearchOpen,
     authorize,
     isSwipeable,
     CategoryOrder

@@ -37,7 +37,9 @@ const Constants = {
     EmitCode: {
         SideMenuOpen: 'sidemenu.open',
         SideMenuClose: 'sidemenu.close',
-        ProductPriceChanged: 'product.price.changed'
+        ProductPriceChanged: 'product.price.changed',
+        SearchModalOpen: 'search.modal.open',
+        SearchModalClose: 'search.modal.close',
     },
     AsyncCode: {
         Intro: 'show_intro',
@@ -88,9 +90,10 @@ const Constants = {
         WishlistEmpty: 'ion-ios-heart-outline',
         Delete: 'ion-ios-trash',
         AddToCart: 'ion-ios-cart',
-        MyOrder: 'ios-cube',
+        MyOrder: 'ion-cube',
         News: 'ios-paper',
         Search: 'ion-ios-search',
+        Close: 'ion-ios-close-empty',
     },
     Format: {
         Currency: {

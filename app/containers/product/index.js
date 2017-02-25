@@ -32,7 +32,8 @@ class Product extends Component {
           currentPosition: 0,
       }
       this.styles = {
-          container: {flex: 1, maxHeight: Constants.Dimension.ScreenHeight()-40},
+          container: {flex: 1, },
+          container_pro: {flex: 1},
           container_row: {
               flexDirection: 'row',
           },
@@ -100,7 +101,7 @@ class Product extends Component {
           />
           <ScrollView onScroll={(event) => this.setState({currentPosition: event.nativeEvent.contentOffset.y})}
             showsVerticalScrollIndicator={false}
-            style={this.styles.container}>
+            style={this.styles.container_pro}>
             {this.renderSwiper(this._product)}
             <View style={this.styles.container}>
                 {this.renderTopInfo(this._product)}
@@ -290,7 +291,7 @@ class Product extends Component {
               this.props.addWishListItem(_product, _variation);
           }
       }
-      return (<View style={{flexDirection: 'row'}}>
+      return (<View style={{flexDirection: 'row', maxWidth:740, width: '100%', position: 'fixed', bottom: 0}}>
           <Button autoWidth={false}
                   onPress={() => opAddToCart(true)}
                   borderLess
