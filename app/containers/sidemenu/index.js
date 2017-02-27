@@ -13,7 +13,7 @@ import { openMenu, closeMenu } from '../../actions/menu'
 import css from "./css";
 import AppEventEmitter from './../../utils/AppEventEmitter';
 import Constants from "../../Constants"
-
+import {navigate} from "../../RouterManager"
 /**
  * This is navigator bar as side menu.
  * This component is always on mount state in all application scences.
@@ -103,21 +103,21 @@ class SideMenu extends Component {
               <TouchableOpacity
                   style={this.styles.menuRow}
                   underlayColor="#2D2D30"
-                  onPress={() => this.dispatchWrapper(() => console.log('Go to Home'))}>
+                  onPress={() => this.dispatchWrapper(() => navigate(''))}>
                   <Icon icon={Constants.Icon.Home}  style={{color:Constants.Color.SideMenuIcon,...css.icon}}/>
                   <Text style={css.menuLink}>{'Trang chủ'}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                   style={this.styles.menuRow}
                   underlayColor="#2D2D30"
-                  onPress={() => this.dispatchWrapper(() => console.log('Go to WishList'))}>
+                  onPress={() => this.dispatchWrapper(() => navigate('/thuong-mua'))}>
                   <Icon icon={Constants.Icon.Wishlist}  style={{color:Constants.Color.SideMenuIcon,...css.icon}}/>
                   <Text style={css.menuLink}>{'WishList'}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                   style={this.styles.menuRow}
                   underlayColor="#2D2D30"
-                  onPress={() => this.dispatchWrapper(() => console.log('Go to My Order'))}>
+                  onPress={() => this.dispatchWrapper(() => navigate('/my-order'))}>
                   <Icon icon={Constants.Icon.MyOrder}  style={{color: Constants.Color.SideMenuIcon,...css.icon}}/>
                   <Text style={css.menuLink}>{'My Order'}</Text>
               </TouchableOpacity>

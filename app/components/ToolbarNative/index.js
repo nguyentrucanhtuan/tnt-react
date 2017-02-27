@@ -103,8 +103,10 @@ class ToolbarNative extends Component {
   renderMenu() {
       const openMenu = () => this.props.openMenu();
       const goBack = () => {
+          window.history.back();
           if (this.backEnable) {
               this.backEnable = false;
+              window.history.back();
               //Actions.pop();
           }
       }
