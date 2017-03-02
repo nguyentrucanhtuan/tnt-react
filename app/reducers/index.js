@@ -11,6 +11,7 @@ import authorize from './Auth'
 import isSwipeable from './Swipeable';
 import CategoryOrder from './Order';
 import Country from './Country'
+import currentWishlist from './AddWishlist'
 
 // ... other reducers
 
@@ -28,5 +29,6 @@ export default combineReducers({
     isSearchOpen,
     authorize,
     isSwipeable,
-    CategoryOrder
+    CategoryOrder,
+    currentWishlist
 });

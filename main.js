@@ -39,7 +39,9 @@ import WishList from './app/containers/wishlist'
 import Category from './app/containers/category'
 import Product from './app/containers/product'
 import Order from './app/containers/order'
+import AddWishList from './app/containers/addwishlist'
 import RootApp from "./app/RootApp";
+
 
 ons.platform.select('android')
 const store = getStore();
@@ -86,20 +88,7 @@ routerManager
    },
    'add-wishlist/:id':  function(params){
         let productId = parseInt(params.id)
-        WooWorker.productById(function(json){
-          /*localForage.getItem('reduxPersist:WishList', function (err, value) {
-             var wishList = JSON.parse(value);
-             wishList.wishListItems.push(json)
-             value = JSON.stringify(wishList)
-             localForage.setItem('reduxPersist:WishList', value, function (err) {
-               document.write('ok');
-             })
-          });
-          */
-          store.dispatch(addWishListItem(json,undefined));
-          document.write('ok');
-        }, undefined, productId);
-
+        ReactDOM.render(<Provider store={store}><AddWishList productId={productId} wishList={true} title="Thêm danh sách thường mua"/></Provider>, container);
    },
    'add-to-cart/:id':  function(params){
         let productId = parseInt(params.id)
